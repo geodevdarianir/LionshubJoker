@@ -50,7 +50,6 @@ namespace Jockerbros
                     Console.WriteLine("Gamer: {0} - {1}", item._name, card.ToString());
                 }
             }
-
         }
     }
 }
