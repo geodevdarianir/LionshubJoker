@@ -17,6 +17,7 @@ namespace Jockerbros
                 new Gamer("Anuki Devdariani")
             };
 
+
             // კარტის დასტის შექმნა
             DeckOfCardCreator deckOfCardCreator = new DeckOfCardCreator();
             // კარტის დასტა
