@@ -8,13 +8,15 @@ namespace Jockerbros.Classes
     {
         private readonly CardColor _cardColor;
         private readonly CardValue _cardValue;
+        private readonly int _cardId;
         public CardColor ColorOfCard { get { return _cardColor; } }
         public CardValue ValueOfCard { get { return _cardValue; } }
 
-        public Card(CardColor color, CardValue value)
+        public Card(CardColor color, CardValue value, int id)
         {
             _cardColor = color;
             _cardValue = value;
+            _cardId = id;
         }
 
         public bool Equals(Card otherCard)
@@ -38,7 +40,7 @@ namespace Jockerbros.Classes
 
         public override string ToString()
         {
-            return $"{_cardValue.ToString()} - {_cardColor.ToString()}";
+            return $"{_cardId} => {_cardValue.ToString()} - {_cardColor.ToString()}";
         }
 
         public static bool operator ==(Card firstCard, Card secondCard)

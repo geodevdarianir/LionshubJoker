@@ -11,11 +11,13 @@ namespace Jockerbros.Classes
             var deckOfCards = new List<Card>();
             var allColorOfCard = Enum.GetValues(typeof(CardColor));
             var allValueOfCard = Enum.GetValues(typeof(CardValue));
+            int index = 0;
             foreach (CardColor color in allColorOfCard)
             {
                 foreach (CardValue value in allValueOfCard)
                 {
-                    deckOfCards.Add(new Card(color, value));
+                    index++;
+                    deckOfCards.Add(new Card(color, value, index));
                 }
             }
             return deckOfCards;
