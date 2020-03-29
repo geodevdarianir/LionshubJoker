@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Jockerbros.Classes
 {
@@ -20,8 +21,127 @@ namespace Jockerbros.Classes
 
         public void PutCardAway(Card card)
         {
-            _cardsOnHand.Remove(card);
-            _table.PlaceCardsOnTheTable(card, this);
+            if (card.AllowsCardOnTheTable)
+            {
+                _cardsOnHand.Remove(card);
+                _table.PlaceCardsOnTheTable(card, this);
+            }
         }
+
+        /// <summary>
+        /// ამოწმებს მოთამაშეს აქვს თუ არა ე.წ. ცვეტი ხელში
+        /// </summary>
+        /// <param name="trumpCard">ე.წ. ცვეტი </param>
+        /// <returns></returns>
+        public bool ContainsColorOfCardOnHand(CardColor musterCard)
+        {
+            foreach (Card card in _cardsOnHand)
+            {
+                if (card.ColorOfCard == musterCard)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// ააქტიურებს შესაბამის მოთამაშის კარტებს. კოზირი, ცვეტი. ჯოკერი ყოველთვის აქტიურია
+        /// </summary>
+        /// <param name="trumpCard">კოზირი</param>
+        public void AllowCardsForTable(Card trumpCard)
+        {
+            CardColor colorOfCard = _table._cardsOnTheTable.Count == 0 ? CardColor.None : _table._cardsOnTheTable[0].Card.ColorOfCard;
+            if (ContainsColorOfCardOnHand(colorOfCard))
+            {
+                AllowMusterCards(colorOfCard);
+            }
+            else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
+            {
+                AllowMusterCards(trumpCard.ColorOfCard);
+            }
+            else
+            {
+                foreach (Card item in _cardsOnHand)
+                {
+                    item.AllowsCardOnTheTable = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// ააქტიურებს ჯოკრის მიერ მოთხოვნილ მაქსიმალურ კარტს. (ვიში ჯვარი, ყვავი, აგური, გული)
+        /// </summary>
+        /// <param name="cardColorOfMaxCard">მაღალი "ცვეტი"</param>
+        public void AllowMaxCardsForTable(CardColor cardColorOfMaxCard, Card trumpCard)
+        {
+            if (ContainsColorOfCardOnHand(cardColorOfMaxCard))
+            {
+                AllowMaxCards(cardColorOfMaxCard);
+            }
+            else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
+            {
+                AllowMaxCards(trumpCard.ColorOfCard);
+            }
+            else
+            {
+                foreach (Card item in _cardsOnHand)
+                {
+                    item.AllowsCardOnTheTable = true;
+                }
+            }
+        }
+
+        private void AllowMusterCards(CardColor colorOfCard)
+        {
+            foreach (Card card in CardsOnHand)
+            {
+                if (card.ColorOfCard == colorOfCard)
+                {
+                    card.AllowsCardOnTheTable = true;
+                }
+            }
+        }
+
+
+        private void AllowMaxCards(CardColor colorOfCard)
+        {
+            int minValue = 0;
+            int cardIdOfMaxCard = -1;
+            foreach (Card card in CardsOnHand)
+            {
+                if (Convert.ToInt16(card.ValueOfCard) > minValue)
+                {
+                    if (cardIdOfMaxCard != -1)
+                    {
+                        CardsOnHand.ElementAt(cardIdOfMaxCard).AllowsCardOnTheTable = false;
+                    }
+                    minValue = Convert.ToInt16(card.ValueOfCard);
+                    card.AllowsCardOnTheTable = true;
+                    cardIdOfMaxCard = card.CardId;
+                }
+            }
+
+
+            //foreach (Card card in CardsOnHand)
+            //{
+            //    if (card.ColorOfCard == colorOfCard)
+            //    {
+            //        card.AllowsCardOnTheTable = true;
+            //    }
+            //}
+        }
+
+        //public void CheckAllowedCardsForTable(Card trumpCard)
+        //{
+        //    CardColor colorOfCard = _table._cardsOnTheTable[0].Card.ColorOfCard;
+        //    foreach (Card item in _cardsOnHand)
+        //    {
+        //        if (item.ColorOfCard == colorOfCard || (item.ColorOfCard == CardColor.Clubs && item.ValueOfCard == CardValue.Six) || (item.ColorOfCard == CardColor.Spades && item.ValueOfCard == CardValue.Six) || (item.ColorOfCard == trumpCard.ColorOfCard))
+        //        {
+        //            item.AllowsCardOnTheTable = true;
+        //        }
+        //    }
+        //}
     }
 }

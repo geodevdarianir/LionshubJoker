@@ -59,6 +59,7 @@ namespace Jockerbros.Classes
                 }
             }
         }
+
         private void EmptyHands()
         {
             foreach (Gamer item in _gamers)

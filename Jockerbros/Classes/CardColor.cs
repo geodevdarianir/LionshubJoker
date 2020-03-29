@@ -10,6 +10,7 @@ namespace Jockerbros.Classes
         Spades,
         Hearts,
         Diamonds,
-        Clubs
+        Clubs,
+        None
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Jockerbros.Classes
@@ -13,19 +14,17 @@ namespace Jockerbros.Classes
             _cardsOnTheTable.Add(new CardsOnTheTable()
             {
                 Card = card,
-                Gamer = gamer
+                Gamer = gamer,
             });
         }
 
-        //public Gamer ChoosWinnerOnTheTable()
-        //{
-            
-        //}
-    }
+      
 
-    public class CardsOnTheTable
-    {
-        public Gamer Gamer { get; set; }
-        public Card Card { get; set; }
+        public class CardsOnTheTable
+        {
+            public int Index { get; set; }
+            public Gamer Gamer { get; set; }
+            public Card Card { get; set; }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Jockerbros.Classes
@@ -14,10 +15,18 @@ namespace Jockerbros.Classes
             int index = 0;
             foreach (CardColor color in allColorOfCard)
             {
-                foreach (CardValue value in allValueOfCard)
+                if (color != CardColor.None)
                 {
-                    index++;
-                    deckOfCards.Add(new Card(color, value, index));
+                    foreach (CardValue value in allValueOfCard)
+                    {
+                        index++;
+                        Card card = new Card(color, value, index);
+                        if (card.CardIsJoker())
+                        {
+                            card.AllowsCardOnTheTable = true;
+                        }
+                        deckOfCards.Add(card);
+                    }
                 }
             }
             return deckOfCards;
