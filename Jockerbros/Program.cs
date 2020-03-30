@@ -24,12 +24,29 @@ namespace Jockerbros
             // კარტის დასტა
             List<Card> deckOfCard = new List<Card>();
             deckOfCard.AddRange(deckOfCardCreator.CreateDeckOfCards());
+            //foreach (Card item in deckOfCard)
+            //{
+            //    Console.WriteLine("{0}", item);
+            //}
+
             // კარტის დასტის აჩეხვა
             var mixDckOfCard = new MixDeckOfCard(deckOfCard);
+            //Console.WriteLine("");
+            //Console.WriteLine("");
+            //foreach (Card item in deckOfCard)
+            //{
+            //    Console.WriteLine("{0}", item);
+            //}
 
             // პირველი ხელი /// 1 კარტის დარიგება თითო მოთამაშეზე
             PlayGame play = new PlayGame(gamers, deckOfCard, CardsOnRound.Four);
             play.StartRound();
+            //Console.WriteLine("");
+            //Console.WriteLine("");
+            //foreach (Gamer item in play.Gamers)
+            //{
+
+            //}
             Console.WriteLine("");
             Console.WriteLine("TrumpCard {0}", play.TrumpCard.ToString());
 
@@ -54,6 +71,12 @@ namespace Jockerbros
                     play.CurrentGamer = gamers[indexOfGamer + 1];
                 }
             }
+
+
+            //table.ChoosWinnerOnTheTable();
+            //        }
+            //    }
+            //}
         }
     }
 }

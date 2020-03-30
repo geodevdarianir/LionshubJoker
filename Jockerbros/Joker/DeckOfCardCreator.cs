@@ -7,6 +7,10 @@ namespace Jockerbros.Classes
 {
     public class DeckOfCardCreator : IDeckOfCardCreator
     {
+        /// <summary>
+        /// ქმნის კარტის დასტას
+        /// </summary>
+        /// <returns>კარტის დასტა</returns>
         public IList<Card> CreateDeckOfCards()
         {
             var deckOfCards = new List<Card>();
@@ -29,6 +33,7 @@ namespace Jockerbros.Classes
                     }
                 }
             }
+
             return deckOfCards;
         }
     }

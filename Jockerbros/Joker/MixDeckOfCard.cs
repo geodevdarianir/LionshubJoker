@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Jockerbros.Classes
 {
-    public class MixDeckOfCard
+    public  class MixDeckOfCard
     {
         // Shuffle a given array using Fisher–Yates shuffle Algorithm
-        public MixDeckOfCard(List<Card> DeckOfCard)
+        public  MixDeckOfCard(List<Card> DeckOfCard)
         {
             if (DeckOfCard == null) { throw new ArgumentException("DeckOfCard"); }
             var random = new Random();

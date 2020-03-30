@@ -12,6 +12,8 @@ namespace Jockerbros.Classes
         public CardColor ColorOfCard { get { return _cardColor; } }
         public CardValue ValueOfCard { get { return _cardValue; } }
         public int CardId { get { return _cardId; } }
+        public string CardPath { get; set; }
+
         public bool AllowsCardOnTheTable { get; set; }
         public Card(CardColor color, CardValue value, int id)
         {
