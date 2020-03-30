@@ -1,0 +1,13 @@
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\bin\Debug\netcoreapp3.1\Jockerbros.exe
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\bin\Debug\netcoreapp3.1\Jockerbros.deps.json
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\bin\Debug\netcoreapp3.1\Jockerbros.runtimeconfig.json
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\bin\Debug\netcoreapp3.1\Jockerbros.runtimeconfig.dev.json
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\bin\Debug\netcoreapp3.1\Jockerbros.dll
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\bin\Debug\netcoreapp3.1\Jockerbros.pdb
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\obj\Debug\netcoreapp3.1\Jockerbros.csprojAssemblyReference.cache
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\obj\Debug\netcoreapp3.1\Jockerbros.csproj.CoreCompileInputs.cache
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\obj\Debug\netcoreapp3.1\Jockerbros.AssemblyInfoInputs.cache
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\obj\Debug\netcoreapp3.1\Jockerbros.AssemblyInfo.cs
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\obj\Debug\netcoreapp3.1\Jockerbros.dll
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\obj\Debug\netcoreapp3.1\Jockerbros.pdb
+C:\Users\Rdev\Source\Repos\geodevdarianir\Jockerbros\Jockerbros\obj\Debug\netcoreapp3.1\Jockerbros.genruntimeconfig.cache
