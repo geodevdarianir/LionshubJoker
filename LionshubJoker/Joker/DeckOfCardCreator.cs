@@ -25,10 +25,10 @@ namespace LionshubJoker.Joker
                     {
                         index++;
                         Card card = new Card(color, value, index);
-                        if (card.CardIsJoker())
-                        {
-                            card.AllowsCardOnTheTable = true;
-                        }
+                        //if (card.CardIsJoker())
+                        //{
+                        //    card.AllowsCardOnTheTable = true;
+                        //}
                         deckOfCards.Add(card);
                     }
                 }

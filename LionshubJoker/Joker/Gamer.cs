@@ -60,6 +60,15 @@ namespace LionshubJoker.Joker
                 }
                 return;
             }
+            else
+            {
+                foreach (Card item in _cardsOnHand)
+                {
+                    if (item.CardIsJoker())
+                        item.AllowsCardOnTheTable = true;
+                }
+                return;
+            }
             if (ContainsColorOfCardOnHand(colorOfCard))
             {
                 AllowMusterCards(colorOfCard);
