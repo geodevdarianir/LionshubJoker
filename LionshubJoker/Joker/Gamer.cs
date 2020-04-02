@@ -52,23 +52,23 @@ namespace LionshubJoker.Joker
         public void AllowCardsForTable(Card trumpCard)
         {
             CardColor colorOfCard = _table._cardsOnTheTable.Count == 0 ? CardColor.None : _table._cardsOnTheTable[0].Card.ColorOfCard;
-            if (_table._cardsOnTheTable.Count == 0)
-            {
-                foreach (Card item in _cardsOnHand)
-                {
-                    item.AllowsCardOnTheTable = true;
-                }
-                return;
-            }
-            else
-            {
-                foreach (Card item in _cardsOnHand)
-                {
-                    if (item.CardIsJoker())
-                        item.AllowsCardOnTheTable = true;
-                }
-                return;
-            }
+            //if (_table._cardsOnTheTable.Count == 0)
+            //{
+            //    foreach (Card item in _cardsOnHand)
+            //    {
+            //        item.AllowsCardOnTheTable = true;
+            //    }
+            //    //return;
+            //}
+            //else
+            //{
+            //    foreach (Card item in _cardsOnHand)
+            //    {
+            //        if (item.CardIsJoker())
+            //            item.AllowsCardOnTheTable = true;
+            //    }
+            //    //return;
+            //}
             if (ContainsColorOfCardOnHand(colorOfCard))
             {
                 AllowMusterCards(colorOfCard);
