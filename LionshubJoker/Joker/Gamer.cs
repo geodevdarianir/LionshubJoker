@@ -8,13 +8,16 @@ namespace LionshubJoker.Joker
     public class Gamer
     {
         private readonly Table _table;
+        public readonly int _id;
         public readonly string _name;
         public readonly List<Card> _cardsOnHand = new List<Card>();
 
         public string Name { get { return _name; } }
+        public int Id { get { return _id; } }
         public List<Card> CardsOnHand { get { return _cardsOnHand; } }
-        public Gamer(string name, Table table)
+        public Gamer(int id, string name, Table table)
         {
+            _id = id;
             _name = name;
             _table = table;
         }
@@ -52,36 +55,36 @@ namespace LionshubJoker.Joker
         public void AllowCardsForTable(Card trumpCard)
         {
             CardColor colorOfCard = _table._cardsOnTheTable.Count == 0 ? CardColor.None : _table._cardsOnTheTable[0].Card.ColorOfCard;
-            //if (_table._cardsOnTheTable.Count == 0)
-            //{
-            //    foreach (Card item in _cardsOnHand)
-            //    {
-            //        item.AllowsCardOnTheTable = true;
-            //    }
-            //    //return;
-            //}
-            //else
-            //{
-            //    foreach (Card item in _cardsOnHand)
-            //    {
-            //        if (item.CardIsJoker())
-            //            item.AllowsCardOnTheTable = true;
-            //    }
-            //    //return;
-            //}
-            if (ContainsColorOfCardOnHand(colorOfCard))
+            if (_table._cardsOnTheTable.Count == 0)
             {
-                AllowMusterCards(colorOfCard);
-            }
-            else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
-            {
-                AllowMusterCards(trumpCard.ColorOfCard);
+                foreach (Card item in _cardsOnHand)
+                {
+                    item.AllowsCardOnTheTable = true;
+                }
             }
             else
             {
                 foreach (Card item in _cardsOnHand)
                 {
-                    item.AllowsCardOnTheTable = true;
+                    if (ContainsColorOfCardOnHand(colorOfCard))
+                    {
+                        AllowMusterCards(colorOfCard);
+                    }
+                    else
+                    {
+                        if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
+                        {
+                            AllowMusterCards(trumpCard.ColorOfCard);
+                        }
+                        else
+                        {
+                            item.AllowsCardOnTheTable = true;
+                        }
+                    }
+                    if (item.CardIsJoker())
+                    {
+                        item.AllowsCardOnTheTable = true;
+                    }
                 }
             }
         }
@@ -95,10 +98,12 @@ namespace LionshubJoker.Joker
             if (ContainsColorOfCardOnHand(cardColorOfMaxCard))
             {
                 AllowMaxCards(cardColorOfMaxCard);
+                AllowJoker();
             }
             else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
             {
                 AllowMaxCards(trumpCard.ColorOfCard);
+                AllowJoker();
             }
             else
             {
@@ -109,6 +114,24 @@ namespace LionshubJoker.Joker
             }
         }
 
+        /// <summary>
+        /// ააქტიურებს ჯოკერს
+        /// </summary>
+        private void AllowJoker()
+        {
+            foreach (Card item in _cardsOnHand)
+            {
+                if (item.CardIsJoker())
+                {
+                    item.AllowsCardOnTheTable = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// ცვეტს ააქტიურებს
+        /// </summary>
+        /// <param name="colorOfCard">კარტის ფერი</param>
         private void AllowMusterCards(CardColor colorOfCard)
         {
             foreach (Card card in CardsOnHand)
@@ -117,6 +140,8 @@ namespace LionshubJoker.Joker
                 {
                     card.AllowsCardOnTheTable = true;
                 }
+
+
             }
         }
 
