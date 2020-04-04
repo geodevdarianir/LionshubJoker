@@ -11,3 +11,16 @@ C:\Users\Rdev\source\repos\geodevdarianir\LionshubJoker\LionshubJoker\obj\Debug\
 C:\Users\Rdev\source\repos\geodevdarianir\LionshubJoker\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.dll
 C:\Users\Rdev\source\repos\geodevdarianir\LionshubJoker\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.pdb
 C:\Users\Rdev\source\repos\geodevdarianir\LionshubJoker\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.genruntimeconfig.cache
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\bin\Debug\netcoreapp3.1\LionshubJoker.exe
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\bin\Debug\netcoreapp3.1\LionshubJoker.deps.json
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\bin\Debug\netcoreapp3.1\LionshubJoker.runtimeconfig.json
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\bin\Debug\netcoreapp3.1\LionshubJoker.runtimeconfig.dev.json
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\bin\Debug\netcoreapp3.1\LionshubJoker.dll
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\bin\Debug\netcoreapp3.1\LionshubJoker.pdb
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.csprojAssemblyReference.cache
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.csproj.CoreCompileInputs.cache
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.AssemblyInfoInputs.cache
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.AssemblyInfo.cs
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.dll
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.pdb
+C:\Users\GIO\Source\Repos\geodevdarianir\Jockerbros\LionshubJoker\obj\Debug\netcoreapp3.1\LionshubJoker.genruntimeconfig.cache
