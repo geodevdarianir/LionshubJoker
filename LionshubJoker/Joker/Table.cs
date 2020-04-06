@@ -16,8 +16,6 @@ namespace LionshubJoker.Joker
                 Card = card,
                 Gamer = gamer,
             });
-
-
         }
 
         public void TakeCardsFromTable()
@@ -130,12 +128,8 @@ namespace LionshubJoker.Joker
                                     }
                                 }
                             }
-
                         }
                     }
-
-
-
                 }
             }
             else
