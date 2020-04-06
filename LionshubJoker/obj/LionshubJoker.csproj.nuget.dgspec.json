@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GIO\\Source\\Repos\\geodevdarianir\\Jockerbros\\LionshubJoker\\LionshubJoker.csproj": {}
+    "C:\\Users\\Rdev\\source\\repos\\geodevdarianir\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GIO\\Source\\Repos\\geodevdarianir\\Jockerbros\\LionshubJoker\\LionshubJoker.csproj": {
+    "C:\\Users\\Rdev\\source\\repos\\geodevdarianir\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GIO\\Source\\Repos\\geodevdarianir\\Jockerbros\\LionshubJoker\\LionshubJoker.csproj",
+        "projectUniqueName": "C:\\Users\\Rdev\\source\\repos\\geodevdarianir\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj",
         "projectName": "LionshubJoker",
-        "projectPath": "C:\\Users\\GIO\\Source\\Repos\\geodevdarianir\\Jockerbros\\LionshubJoker\\LionshubJoker.csproj",
-        "packagesPath": "C:\\Users\\GIO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GIO\\Source\\Repos\\geodevdarianir\\Jockerbros\\LionshubJoker\\obj\\",
+        "projectPath": "C:\\Users\\Rdev\\source\\repos\\geodevdarianir\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj",
+        "packagesPath": "C:\\Users\\Rdev\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rdev\\source\\repos\\geodevdarianir\\LionshubJoker\\LionshubJoker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\GIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Rdev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
