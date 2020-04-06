@@ -6,13 +6,13 @@ namespace LionshubJoker.Joker
 {
     public class PlayGame
     {
-
+       
         private readonly IList<Gamer> _gamers;
         private readonly IList<Card> _deckOfCards;
         private readonly CardsOnRound _cardsOnRound;
         private Card _trumpCard;
         public string Status { get { return $"Waiting for player {CurrentGamer._name}"; } }
-        public Gamer CurrentGamer { get; set; }
+        public Gamer CurrentGamer { get;  set; }
 
         public IList<Gamer> Gamers { get { return _gamers; } }
         public Card TrumpCard
@@ -46,10 +46,7 @@ namespace LionshubJoker.Joker
         private void GetTrumpCardOfRound()
         {
             if (_cardsOnRound != CardsOnRound.Nine)
-            {
                 _trumpCard = _deckOfCards[0];
-                _trumpCard.IsTrump = true;
-            }
         }
         private void HandOutCardsToEachPlayer()
         {

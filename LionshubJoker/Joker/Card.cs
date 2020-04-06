@@ -6,27 +6,20 @@ namespace LionshubJoker.Joker
 {
     public class Card : IEquatable<Card>
     {
-
         private readonly CardColor _cardColor;
         private readonly CardValue _cardValue;
         private readonly int _cardId;
-
         public CardColor ColorOfCard { get { return _cardColor; } }
         public CardValue ValueOfCard { get { return _cardValue; } }
         public int CardId { get { return _cardId; } }
         public string CardPath { get; set; }
-        public StrengthOfCard Strength { get; set; }
-        public CardColor GiveAndTake { get; set; }
-        public bool IsTrump { get; set; }
-        public bool AllowsCardOnTheTable { get; set; }
-        public CardColor JokerNeedsCard { get; set; }
 
+        public bool AllowsCardOnTheTable { get; set; }
         public Card(CardColor color, CardValue value, int id)
         {
             _cardColor = color;
             _cardValue = value;
             _cardId = id;
-            GiveAndTake = CardColor.None;
         }
 
         public bool CardIsJoker()
@@ -35,25 +28,6 @@ namespace LionshubJoker.Joker
                 return true;
             return false;
         }
-
-        public void SetJokerStrength(StrengthOfCard strengthOfCard, CardColor giveANDtake)
-        {
-            if (this.CardIsJoker())
-            {
-                if (strengthOfCard == StrengthOfCard.LowJoker)
-                {
-                    this.Strength = StrengthOfCard.LowJoker;
-                }
-                else
-                {
-                    this.Strength = StrengthOfCard.Joker;
-                }
-                GiveAndTake = giveANDtake;
-            }
-        }
-
-
-
         public bool Equals(Card otherCard)
         {
             if (ReferenceEquals(otherCard, null))

@@ -7,6 +7,7 @@ namespace LionshubJoker.Joker
     // კარტის მნიშვნელობები     ======  ტუზი, 6, 7, 8, 9, 10, ვალეტი, დამა, კაროლი
     public enum CardValue
     {
+        Ace = 14,
         Six = 6,
         Seven = 7,
         Eight = 8,
@@ -14,7 +15,6 @@ namespace LionshubJoker.Joker
         Ten = 10,
         Jack = 11,
         Queen = 12,
-        King = 13,
-        Ace = 14,
+        King = 13
     }
 }

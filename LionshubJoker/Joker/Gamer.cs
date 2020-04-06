@@ -15,8 +15,6 @@ namespace LionshubJoker.Joker
         public string Name { get { return _name; } }
         public int Id { get { return _id; } }
         public List<Card> CardsOnHand { get { return _cardsOnHand; } }
-
-        public List<Table.CardsOnTheTable> TookenCardFromTable { get; set; }
         public Gamer(int id, string name, Table table)
         {
             _id = id;
@@ -99,12 +97,12 @@ namespace LionshubJoker.Joker
         {
             if (ContainsColorOfCardOnHand(cardColorOfMaxCard))
             {
-                AllowMaxCards(cardColorOfMaxCard);
+                AllowMaxCards(cardColorOfMaxCard,false);
                 AllowJoker();
             }
             else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
             {
-                AllowMaxCards(trumpCard.ColorOfCard);
+                AllowMaxCards(trumpCard.ColorOfCard, true);
                 AllowJoker();
             }
             else
@@ -142,133 +140,128 @@ namespace LionshubJoker.Joker
                 {
                     card.AllowsCardOnTheTable = true;
                 }
+
+
             }
         }
 
-        ///// <summary>
-        ///// ააქტიურებს ჯოკრის მიერ მოთხოვნილ მაქსიმალურ კარტს. (ვიში ჯვარი, ყვავი, აგური, გული)
-        ///// </summary>
-        ///// <param name="cardColorOfMaxCard">მაღალი "ცვეტი"</param>
-        //public void AllowMaxCardsForTable(CardColor cardColorOfMaxCard, Card trumpCard)
+        readonly List<int> cardValues = new List<int>();
+        private int Sort(int CardValue)
+        {
+            cardValues.Add(CardValue);
+            if(cardValues.Count > 1)
+            {
+                for (int j = 1; j < cardValues.Count; j++)
+                {
+                    int value = cardValues[j];
+                    int i = j - 1;
+                    while (i >= 0 && cardValues[i] > value)
+                    {
+                        cardValues[i + 1] = cardValues[j];
+                        i -= 1;
+                    }
+                    cardValues[i + 1] = value;
+                }
+                return cardValues[cardValues.Count - 1];
+            }
+            return cardValues[0];
+        }
+
+
+        private void AllowMaxCards(CardColor colorOfCard, bool trump)
+        {
+            if (trump)
+            {
+                foreach (var item in CardsOnHand)
+                {
+                    if (item.ColorOfCard == colorOfCard)
+                    {
+                        item.AllowsCardOnTheTable = true;
+                    }
+                    else
+                    {
+                        item.AllowsCardOnTheTable = false;
+                    }
+                }
+            }
+            else
+            {
+                int number = 0;
+                int index = 0;
+                foreach (Card card in CardsOnHand)
+                {
+                    index++;
+
+                    if (card.ColorOfCard == colorOfCard && !card.CardIsJoker())
+                    {
+                        number = Sort(Convert.ToInt16(card.ValueOfCard));
+                    }
+
+                    if (CardsOnHand.Count == index)
+                    {
+                        //CardsOnHand.ElementAt(number).AllowsCardOnTheTable = false;
+                        foreach (var cardo in CardsOnHand)
+                        {
+                            if (cardo.ColorOfCard == colorOfCard)
+                            {
+                                if (Convert.ToInt16(cardo.ValueOfCard) == number)
+                                {
+                                    cardo.AllowsCardOnTheTable = true;
+                                }
+                                else
+                                {
+                                    cardo.AllowsCardOnTheTable = false;
+                                }
+                            }
+                            else
+                            {
+                                //jokers zevit mainc trued vxdi!
+                                cardo.AllowsCardOnTheTable = false;
+                            }
+
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        //private void AllowMaxCard(CardColor colorOfCard)
         //{
-        //    if (ContainsColorOfCardOnHand(cardColorOfMaxCard))
+          //  int minValue = 0;
+            //int cardIdOfMaxCard = -1;
+            //foreach (Card card in CardsOnHand)
+            //{
+              //  if (Convert.ToInt16(card.ValueOfCard) > minValue)
+                //{
+                  //  if (cardIdOfMaxCard != -1)
+                    //{
+                      //  CardsOnHand.ElementAt(cardIdOfMaxCard).AllowsCardOnTheTable = false;
+                    //}
+                    //minValue = Convert.ToInt16(card.ValueOfCard);
+                    //card.AllowsCardOnTheTable = true;
+                    //cardIdOfMaxCard = card.CardId;
+                //}
+            //}
+            //foreach (Card card in CardsOnHand)
+            //{
+            //    if (card.ColorOfCard == colorOfCard)
+            //    {
+            //        card.AllowsCardOnTheTable = true;
+            //    }
+            //}
+        //}
+
+        //public void CheckAllowedCardsForTable(Card trumpCard)
+        //{
+        //    CardColor colorOfCard = _table._cardsOnTheTable[0].Card.ColorOfCard;
+        //    foreach (Card item in _cardsOnHand)
         //    {
-        //        AllowMaxCards(cardColorOfMaxCard, false);
-        //        AllowJoker();
-        //    }
-        //    else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
-        //    {
-        //        AllowMaxCards(trumpCard.ColorOfCard, true);
-        //        AllowJoker();
-        //    }
-        //    else
-        //    {
-        //        foreach (Card item in _cardsOnHand)
+        //        if (item.ColorOfCard == colorOfCard || (item.ColorOfCard == CardColor.Clubs && item.ValueOfCard == CardValue.Six) || (item.ColorOfCard == CardColor.Spades && item.ValueOfCard == CardValue.Six) || (item.ColorOfCard == trumpCard.ColorOfCard))
         //        {
         //            item.AllowsCardOnTheTable = true;
         //        }
         //    }
         //}
-
-
-        //readonly List<int> cardValues = new List<int>();
-        //private int Sort(int CardValue)
-        //{
-        //    cardValues.Add(CardValue);
-        //    if (cardValues.Count > 1)
-        //    {
-        //        for (int j = 1; j < cardValues.Count; j++)
-        //        {
-        //            int value = cardValues[j];
-        //            int i = j - 1;
-        //            while (i >= 0 && cardValues[i] > value)
-        //            {
-        //                cardValues[i + 1] = cardValues[j];
-        //                i -= 1;
-        //            }
-        //            cardValues[i + 1] = value;
-        //        }
-        //        return cardValues[cardValues.Count - 1];
-        //    }
-        //    return cardValues[0];
-        //}
-
-
-        //private void AllowMaxCards(CardColor colorOfCard, bool trump)
-        //{
-        //    if (trump)
-        //    {
-        //        foreach (var item in CardsOnHand)
-        //        {
-        //            if (item.ColorOfCard == colorOfCard)
-        //            {
-        //                item.AllowsCardOnTheTable = true;
-        //            }
-        //            else
-        //            {
-        //                item.AllowsCardOnTheTable = false;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        int number = 0;
-        //        int index = 0;
-        //        foreach (Card card in CardsOnHand)
-        //        {
-        //            index++;
-
-        //            if (card.ColorOfCard == colorOfCard && !card.CardIsJoker())
-        //            {
-        //                number = Sort(Convert.ToInt16(card.ValueOfCard));
-        //            }
-
-        //            if (CardsOnHand.Count == index)
-        //            {
-        //                //CardsOnHand.ElementAt(number).AllowsCardOnTheTable = false;
-        //                foreach (var cardo in CardsOnHand)
-        //                {
-        //                    if (cardo.ColorOfCard == colorOfCard)
-        //                    {
-        //                        if (Convert.ToInt16(cardo.ValueOfCard) == number)
-        //                        {
-        //                            cardo.AllowsCardOnTheTable = true;
-        //                        }
-        //                        else
-        //                        {
-        //                            cardo.AllowsCardOnTheTable = false;
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        //jokers zevit mainc trued vxdi!
-        //                        cardo.AllowsCardOnTheTable = false;
-        //                    }
-
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //}
-
-        private void AllowMaxCards(CardColor colorOfCard)
-        {
-            int minValue = 0;
-            int cardIdOfMaxCard = -1;
-            foreach (Card card in CardsOnHand)
-            {
-                if (Convert.ToInt16(card.ValueOfCard) > minValue)
-                {
-                    if (cardIdOfMaxCard != -1)
-                    {
-                        CardsOnHand.ElementAt(cardIdOfMaxCard).AllowsCardOnTheTable = false;
-                    }
-                    minValue = Convert.ToInt16(card.ValueOfCard);
-                    card.AllowsCardOnTheTable = true;
-                    cardIdOfMaxCard = card.CardId;
-                }
-            }
-        }
     }
 }
