@@ -15,13 +15,14 @@ namespace LionshubJoker.Joker
         public string Name { get { return _name; } }
         public int Id { get { return _id; } }
         public List<Card> CardsOnHand { get { return _cardsOnHand; } }
-
-        public List<Table.CardsOnTheTable> TookenCardFromTable { get; set; }
+        public bool CurrentGamerAfterOneRound { get; set; }
+        public List<Table.FourCardsAndGamersOnTable> TakenFourCardAndGamerFromTable { get; set; }
         public Gamer(int id, string name, Table table)
         {
             _id = id;
             _name = name;
             _table = table;
+            TakenFourCardAndGamerFromTable = new List<Table.FourCardsAndGamersOnTable>();
         }
 
         public void PutCardAway(Card card)
@@ -56,8 +57,8 @@ namespace LionshubJoker.Joker
         /// <param name="trumpCard">კოზირი</param>
         public void AllowCardsForTable(Card trumpCard)
         {
-            CardColor colorOfCard = _table._cardsOnTheTable.Count == 0 ? CardColor.None : _table._cardsOnTheTable[0].Card.ColorOfCard;
-            if (_table._cardsOnTheTable.Count == 0)
+            CardColor colorOfCard = _table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count == 0 ? CardColor.None : _table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.ColorOfCard;
+            if (_table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count == 0)
             {
                 foreach (Card item in _cardsOnHand)
                 {

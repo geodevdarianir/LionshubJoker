@@ -87,7 +87,7 @@ namespace LionshubJoker
     //        }
     //    }
     //}
-    
+
     class Program
     {
         static void Main(string[] args)
@@ -118,7 +118,7 @@ namespace LionshubJoker
             Console.WriteLine("");
             Console.WriteLine("TrumpCard {0}", play.TrumpCard.ToString());
 
-            while (table._cardsOnTheTable.Count != gamers.Count)
+            while (table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count != gamers.Count)
             {
                 int indexOfGamer = gamers.IndexOf(play.CurrentGamer);
                 play.CurrentGamer.AllowCardsForTable(play.TrumpCard);
@@ -129,9 +129,7 @@ namespace LionshubJoker
 
                 }
                 int indexOfCard = Convert.ToInt32(Console.ReadLine());
-                if (play.CurrentGamer.CardsOnHand[indexOfCard].CardIsJoker() || 
-                                table._cardsOnTheTable[0].Card.CardId == 28 || 
-                                table._cardsOnTheTable[0].Card.CardId == 1)
+                if (play.CurrentGamer.CardsOnHand[indexOfCard].CardIsJoker() || table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.CardIsJoker())
                 {
                     Console.WriteLine($"{play.CurrentGamer.Name} needs max Color : ");
                     Array colors = Enum.GetValues(typeof(CardColor));
@@ -170,10 +168,9 @@ namespace LionshubJoker
                     }
                 }
                 play.CurrentGamer.PutCardAway(play.CurrentGamer.CardsOnHand[indexOfCard]);
-                if (!(table._cardsOnTheTable[0].Card.CardId == 28) &&
-                    !(table._cardsOnTheTable[0].Card.CardId == 1))
+                if (!(table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.CardIsJoker()))
                 {
-                    
+
                     if (indexOfGamer == gamers.Count - 1)
                     {
                         play.CurrentGamer = gamers[0];
@@ -183,7 +180,7 @@ namespace LionshubJoker
                         play.CurrentGamer = gamers[indexOfGamer + 1];
                     }
                 }
-                
+
             }
         }
     }
