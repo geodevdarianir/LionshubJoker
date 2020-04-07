@@ -4,7 +4,10 @@ using System.Text;
 
 namespace LionshubJoker.Joker
 {
-    class VerketeteListeClass
+    public enum GameType
     {
+        Standard = 1,
+        Nines = 2,
+        Ones = 3
     }
 }

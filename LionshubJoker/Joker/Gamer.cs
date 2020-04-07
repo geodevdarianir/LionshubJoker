@@ -25,13 +25,16 @@ namespace LionshubJoker.Joker
             TakenFourCardAndGamerFromTable = new List<Table.FourCardsAndGamersOnTable>();
         }
 
-        public void PutCardAway(Card card)
+        public bool PutCardAway(Card card)
         {
+            bool result = false;
             if (card.AllowsCardOnTheTable)
             {
                 _cardsOnHand.Remove(card);
                 _table.PlaceCardsOnTheTable(card, this);
+                result = true;
             }
+            return result;
         }
 
         /// <summary>

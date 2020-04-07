@@ -9,11 +9,10 @@ namespace LionshubJoker.Joker
 
         private readonly IList<Gamer> _gamers;
         private readonly IList<Card> _deckOfCards;
-        private readonly CardsOnRound _cardsOnRound;
+        private CardsOnRound _cardsOnRound;
         private Card _trumpCard;
         public string Status { get { return $"Waiting for player {CurrentGamer._name}"; } }
         public Gamer CurrentGamer { get; set; }
-
         public IList<Gamer> Gamers { get { return _gamers; } }
         public Card TrumpCard
         {
@@ -26,29 +25,33 @@ namespace LionshubJoker.Joker
                     GetTrumpCardOfRound();
             }
         }
-        public PlayGame(IList<Gamer> gamer, IList<Card> deckOfCards, CardsOnRound cardsOnHand)
+        public PlayGame(IList<Gamer> gamer, IList<Card> deckOfCards)
         {
             //_table = table;
             _gamers = gamer;
             _deckOfCards = deckOfCards;
-            _cardsOnRound = cardsOnHand;
-        }
 
-        public void StartRound()
+        }
+        public void StartRound(CardsOnRound cardsOnHand)
         {
+            _cardsOnRound = cardsOnHand;
             EmptyHands();
             HandOutCardsToEachPlayer();
             GetTrumpCardOfRound();
-            CurrentGamer = _gamers[3];
+            CurrentGamer = _gamers[1];
         }
-
 
         private void GetTrumpCardOfRound()
         {
             if (_cardsOnRound != CardsOnRound.Nine)
             {
                 _trumpCard = _deckOfCards[0];
-                _trumpCard.IsTrump = true;
+                foreach (Card card in _deckOfCards)
+                {
+                    if (card.ColorOfCard == _trumpCard.ColorOfCard) {
+                        _trumpCard.IsTrump = true;
+                    }
+                }
             }
         }
         private void HandOutCardsToEachPlayer()
@@ -62,7 +65,6 @@ namespace LionshubJoker.Joker
                 }
             }
         }
-
         private void EmptyHands()
         {
             foreach (Gamer item in _gamers)

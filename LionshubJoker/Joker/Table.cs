@@ -13,7 +13,6 @@ namespace LionshubJoker.Joker
             public Gamer Gamer { get; set; }
             public Card Card { get; set; }
         }
-
         public class FourCardsAndGamersOnTable
         {
             public List<CardAndGamerOnTable> _fourCardAndGamerOnTable { get; set; }
@@ -22,20 +21,21 @@ namespace LionshubJoker.Joker
                 _fourCardAndGamerOnTable = new List<CardAndGamerOnTable>();
             }
         }
-
         public readonly FourCardsAndGamersOnTable _fourCardsAndGamersListOnTheTable = new FourCardsAndGamersOnTable();
-
-        public void PlaceCardsOnTheTable(Card card, Gamer gamer)
+        public Table()
         {
             _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable = new List<CardAndGamerOnTable>();
+        }
+        public void PlaceCardsOnTheTable(Card card, Gamer gamer)
+        {
+
             _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Add(new CardAndGamerOnTable()
             {
                 Card = card,
                 Gamer = gamer,
             });
         }
-
-        public void TakeCardsFromTable(PlayGame play)
+        public void TakeCardsFromTable()
         {
             CardAndGamerOnTable firstCardAndGamer = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0];
             //variable cardsAndGamerOnTable არის იმდენი კარტი(მისი მფლობელი მოთამაში თურთ) რამდენსაც გვაძლევს ეს ფილტრი. ანუ პირველი კარტის ცვეტის ნაირი კარტები.
@@ -285,7 +285,5 @@ namespace LionshubJoker.Joker
                 }
             }
         }
-
-
     }
 }
