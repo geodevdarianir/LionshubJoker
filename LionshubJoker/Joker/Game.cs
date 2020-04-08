@@ -35,7 +35,6 @@ namespace LionshubJoker.Joker
         {
             List<CardsOnRound> rounds = new List<CardsOnRound>();
             var cardsOnRound = Enum.GetValues(typeof(CardsOnRound));
-            //Array.Sort(cardsOnRound);
             foreach (CardsOnRound round in cardsOnRound)
             {
                 if (round != CardsOnRound.Nine)

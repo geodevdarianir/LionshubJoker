@@ -212,7 +212,6 @@ namespace LionshubJoker
                 }
                 table.TakeCardsFromTable();
             }
-
         }
     }
 }

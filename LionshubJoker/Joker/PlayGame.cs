@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace LionshubJoker.Joker
 {
@@ -38,7 +39,7 @@ namespace LionshubJoker.Joker
             EmptyHands();
             HandOutCardsToEachPlayer();
             GetTrumpCardOfRound();
-            CurrentGamer = _gamers[1];
+            CurrentGamer = _gamers[0];
         }
 
         private void GetTrumpCardOfRound()
@@ -63,6 +64,7 @@ namespace LionshubJoker.Joker
                     item.CardsOnHand.Add(_deckOfCards[0]);
                     _deckOfCards.RemoveAt(0);
                 }
+                item.CardsOnHand.OrderByDescending(p => p.ColorOfCard).OrderByDescending(p => p.Strength).ToList();
             }
         }
         private void EmptyHands()
