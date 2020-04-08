@@ -14,7 +14,7 @@ namespace LionshubJoker.Joker
 
         public string Name { get { return _name; } }
         public int Id { get { return _id; } }
-        public List<Card> CardsOnHand { get { return _cardsOnHand; } }
+        public List<Card> CardsOnHand { get { return _cardsOnHand.OrderByDescending(p => p.ColorOfCard).OrderByDescending(p => p.Strength).ToList(); } }
         public bool CurrentGamerAfterOneRound { get; set; }
         public List<Table.FourCardsAndGamersOnTable> TakenFourCardAndGamerFromTable { get; set; }
         public Gamer(int id, string name, Table table)
@@ -255,6 +255,7 @@ namespace LionshubJoker.Joker
             }
 
         }
+
 
         //private void AllowMaxCards(CardColor colorOfCard)
         //{

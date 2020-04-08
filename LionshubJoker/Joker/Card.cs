@@ -29,6 +29,7 @@ namespace LionshubJoker.Joker
             GiveAndTake = CardColor.None;
         }
 
+
         public bool CardIsJoker()
         {
             if ((_cardValue == CardValue.Six && _cardColor == CardColor.Clubs) || (_cardValue == CardValue.Six && _cardColor == CardColor.Spades))

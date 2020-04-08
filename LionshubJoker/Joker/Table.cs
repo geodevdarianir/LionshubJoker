@@ -185,54 +185,42 @@ namespace LionshubJoker.Joker
                     if (firstCardAndGamer.Card.GiveAndTake != CardColor.None)
                     {
                         //GiveAndTake => ვსაზღვრავ პირველი ჯოკრის გარდა, ვინმე ჩამოვიდა თუ არა ჯოკერს მის შემდეგ. მეორის GiveAndTake= None
-                        List<CardAndGamerOnTable> cardsAndGamerOnTable = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.ColorOfCard == firstCardAndGamer.Card.GiveAndTake && p.Card.CardIsJoker() && p.Card.IsTrump).ToList();
-                        if (cardsAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count == 0 && cardsAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count == 0)
+                        //List<CardAndGamerOnTable> cardsAndGamerOnTable = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.ColorOfCard == firstCardAndGamer.Card.GiveAndTake && p.Card.CardIsJoker() && p.Card.IsTrump).ToList();
+                        if (_fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count == 0 && _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count == 0)
                         {
                             //ტრამპი არ არის ჩამოსული და მეორე ჯოკერი არ არის ჩამოსული
-                            //StrengthOfCard maxCardOfSameColor = cardsOnTheTable.Max(p => p.Card.Strength);
-                            //CardsOnTheTable card = cardsOnTheTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList()[0];
-                            //CardsOnTheTable card = _cardsOnTheTable.First(p => p.Card.Strength == maxCardOfSameColor);
-                            //cardsOnTheTable.Gamer.TookenCardFromTable.Add(card);
-
                             firstCardAndGamer.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
                             firstCardAndGamer.Gamer.CurrentGamerAfterOneRound = true;
                         }
-                        else if (cardsAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count != 0 && cardsAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count == 0)
+                        else if (_fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count != 0 && _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count == 0)
                         {
                             //კოზირი დარტყმულია და ჯოკერი არა
-                            CardColor colorOfTrumCard = cardsAndGamerOnTable.Where(p => p.Card.IsTrump == true).First().Card.ColorOfCard;
+                            CardColor colorOfTrumCard = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.IsTrump == true).First().Card.ColorOfCard;
                             if (firstCardAndGamer.Card.GiveAndTake == colorOfTrumCard)
                             {
                                 //მიყავს ჯოკერს
                                 firstCardAndGamer.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
 
-
                             }
                             else
                             {
                                 // მიყავს კოზირს
-                                StrengthOfCard trumpStrenght = cardsAndGamerOnTable.Where(p => p.Card.IsTrump).Max(p => p.Card.Strength);
-                                CardAndGamerOnTable cardAndGamerOnTable = cardsAndGamerOnTable.Where(p => p.Card.Strength == trumpStrenght).First();
-                                cardAndGamerOnTable.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
+                                StrengthOfCard trumpStrenght = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.IsTrump).Max(p => p.Card.Strength);
+                                CardAndGamerOnTable winner = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.Strength == trumpStrenght).First();
+                                winner.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
                             }
 
-                            //StrengthOfCard maxTrump = cardsOnTheTable.Where(p => p.Card.IsTrump == true).Max(p => p.Card.Strength);
-                            //FourCardsOnTheTable card = _fourCardsAndGamersListOnTheTable._cardsOnTheTable.First(p => p.Card.Strength == maxTrump);
-                            //card.Gamer.TakenCardFromTable.Add(card);
                         }
-                        else if (cardsAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count != 0 && cardsAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count != 0)
+                        else if (_fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count != 0 && _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count != 0)
                         {
                             //კოზირი დარტყმულია და ჯოკერიც
-                            CardAndGamerOnTable jokerGamer = cardsAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).First();
-                            jokerGamer.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
+                            CardAndGamerOnTable winner = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).First();
+                            winner.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
                         }
-                        else if (cardsAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count == 0 && cardsAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count != 0)
+                        else if (_fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.IsTrump == true).ToList().Count == 0 && _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList().Count != 0)
                         {
-                            //კოზირი არ არის დარტყმული და ჯოკერი დარტყმულია
-                            //FourCardsOnTheTable card = cardsOnTheTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).ToList()[0];
-                            //card.Gamer.TakenCardFromTable.Add(card);
-                            CardAndGamerOnTable jokerGamer = cardsAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).First();
-                            jokerGamer.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
+                            CardAndGamerOnTable winner = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.CardIsJoker() == true && p.Card.GiveAndTake == CardColor.None).First();
+                            winner.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
                         }
                     }
                 }
