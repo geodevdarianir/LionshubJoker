@@ -64,7 +64,7 @@ namespace LionshubJoker.Joker
                     item.CardsOnHand.Add(_deckOfCards[0]);
                     _deckOfCards.RemoveAt(0);
                 }
-                item.CardsOnHand.OrderByDescending(p => p.ColorOfCard).OrderByDescending(p => p.Strength).ToList();
+                item.CardsOnHand.OrderByDescending(p => p.Strength).OrderByDescending(p => p.ColorOfCard ).ToList();
             }
         }
         private void EmptyHands()

@@ -183,29 +183,29 @@ namespace LionshubJoker.Joker
         }
 
 
-        readonly List<int> cardValues = new List<int>();
-        private int Sort(int CardValue)
-        {
-            cardValues.Add(CardValue);
-            if (cardValues.Count > 1)
-            {
-                for (int j = 1; j < cardValues.Count; j++)
-                {
-                    int value = cardValues[j];
-                    int i = j - 1;
-                    while (i >= 0 && cardValues[i] > value)
-                    {
-                        cardValues[i + 1] = cardValues[j];
-                        i -= 1;
-                    }
-                    cardValues[i + 1] = value;
-                }
-                return cardValues[cardValues.Count - 1];
-            }
-            return cardValues[0];
-        }
 
+        // private int Sort(int CardValue)
+        //{
+        //  cardValues.Add(CardValue);
+        //if (cardValues.Count > 1)
+        //{
+        //  for (int j = 1; j < cardValues.Count; j++)
+        //{
+        //  int value = cardValues[j];
+        //int i = j - 1;
+        //while (i >= 0 && cardValues[i] > value)
+        //{
+        //  cardValues[i + 1] = cardValues[j];
+        //  i -= 1;
+        //}
+        //cardValues[i + 1] = value;
+        //}
+        //return cardValues[cardValues.Count - 1];
+        //}
+        //return cardValues[0];
+        //}
 
+        readonly List<Card> cardValues = new List<Card>();
         private void AllowMaxCards(CardColor colorOfCard, bool trump)
         {
             if (trump)
@@ -224,7 +224,7 @@ namespace LionshubJoker.Joker
             }
             else
             {
-                int number = 0;
+                StrengthOfCard strength = default;
                 int index = 0;
                 foreach (Card card in CardsOnHand)
                 {
@@ -232,17 +232,17 @@ namespace LionshubJoker.Joker
 
                     if (card.ColorOfCard == colorOfCard && !card.CardIsJoker())
                     {
-                        number = Sort(Convert.ToInt16(card.ValueOfCard));
+                        cardValues.Add(card);
+                        strength = cardValues.Max(p => p.Strength);
                     }
 
                     if (CardsOnHand.Count == index)
                     {
-                        //CardsOnHand.ElementAt(number).AllowsCardOnTheTable = false;
                         foreach (var cardo in CardsOnHand)
                         {
                             if (cardo.ColorOfCard == colorOfCard)
                             {
-                                if (Convert.ToInt16(cardo.ValueOfCard) == number)
+                                if (cardo.Strength == strength)
                                 {
                                     cardo.AllowsCardOnTheTable = true;
                                 }
