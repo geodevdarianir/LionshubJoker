@@ -70,39 +70,47 @@ namespace LionshubJoker.Joker
         /// ააქტიურებს შესაბამის მოთამაშის კარტებს. კოზირი, ცვეტი. ჯოკერი ყოველთვის აქტიურია
         /// </summary>
         /// <param name="trumpCard">კოზირი</param>
-        public void AllowCardsForTable(Card trumpCard)
+        public void AllowCardsForTable()
         {
-            CardColor colorOfCard = _table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count == 0 ? CardColor.None : _table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.ColorOfCard;
+            CardColor colorOfCard = CardColor.None;
+            //_table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count == 0 ? CardColor.None : _table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.ColorOfCard;
+            if (_table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count != 0)
+            {
+                if (_table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.CardIsJoker() == true)
+                {
+                    colorOfCard = _table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.GiveAndTake;
+                }
+                else
+                {
+                    colorOfCard = _table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable[0].Card.ColorOfCard;
+                }
+            }
             if (_table._fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count == 0)
             {
-                foreach (Card item in _cardsOnHand)
-                {
-                    item.AllowsCardOnTheTable = true;
-                }
+                _cardsOnHand.ForEach(s => s.AllowsCardOnTheTable = true);
             }
             else
             {
-                foreach (Card item in _cardsOnHand)
+                _cardsOnHand.ForEach(s => s.AllowsCardOnTheTable = false);
+
+                if (_cardsOnHand.Where(p => p.ColorOfCard == colorOfCard).ToList().Count != 0)
                 {
-                    if (ContainsColorOfCardOnHand(colorOfCard))
+                    _cardsOnHand.Where(p => p.ColorOfCard == colorOfCard).ToList().ForEach(s => s.AllowsCardOnTheTable = true);
+                }
+                else
+                {
+                    if (_cardsOnHand.Where(p => p.IsTrump == true).ToList().Count != 0)
                     {
-                        AllowMusterCards(colorOfCard);
+                        _cardsOnHand.Where(p => p.IsTrump == true).ToList().ForEach(s => s.AllowsCardOnTheTable = true);
                     }
                     else
                     {
-                        if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
-                        {
-                            AllowMusterCards(trumpCard.ColorOfCard);
-                        }
-                        else
-                        {
-                            item.AllowsCardOnTheTable = true;
-                        }
+                        _cardsOnHand.ForEach(s => s.AllowsCardOnTheTable = true);
                     }
-                    if (item.CardIsJoker())
-                    {
-                        item.AllowsCardOnTheTable = true;
-                    }
+                }
+                if (_cardsOnHand.Where(p => p.CardIsJoker() == true).ToList().Count != 0)
+                {
+                    _cardsOnHand.Where(p => p.CardIsJoker() == true).ToList().ForEach(s => s.AllowsCardOnTheTable = true);
                 }
             }
         }
@@ -169,25 +177,42 @@ namespace LionshubJoker.Joker
         /// ააქტიურებს ჯოკრის მიერ მოთხოვნილ მაქსიმალურ კარტს. (ვიში ჯვარი, ყვავი, აგური, გული)
         /// </summary>
         /// <param name="cardColorOfMaxCard">მაღალი "ცვეტი"</param>
-        public void AllowMaxCardsForTable(CardColor cardColorOfMaxCard, Card trumpCard)
+        public void AllowMaxCardsForTable(CardColor cardColorOfMaxCard)
         {
-            if (ContainsColorOfCardOnHand(cardColorOfMaxCard))
+            if (_cardsOnHand.Where(p => p.ColorOfCard == cardColorOfMaxCard).ToList().Count != 0)
             {
-                AllowMaxCards(cardColorOfMaxCard, false);
-                AllowJoker();
+                StrengthOfCard maxStr = _cardsOnHand.Where(p => p.ColorOfCard == cardColorOfMaxCard).Max(p => p.Strength);
+                _cardsOnHand.Where(p => p.ColorOfCard == cardColorOfMaxCard && p.Strength == maxStr).First().AllowsCardOnTheTable = true;
             }
-            else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
+            else if (_cardsOnHand.Where(p => p.IsTrump == true).ToList().Count != 0)
             {
-                AllowMaxCards(trumpCard.ColorOfCard, true);
-                AllowJoker();
+                _cardsOnHand.Where(p => p.IsTrump == true).ToList().ForEach(p => p.AllowsCardOnTheTable = true);
             }
             else
             {
-                foreach (Card item in _cardsOnHand)
-                {
-                    item.AllowsCardOnTheTable = true;
-                }
+                _cardsOnHand.ForEach(p => p.AllowsCardOnTheTable = true);
             }
+            if (_cardsOnHand.Where(p => p.CardIsJoker() == true).ToList().Count != 0)
+            {
+                _cardsOnHand.Where(p => p.CardIsJoker() == true).ToList().ForEach(p => p.AllowsCardOnTheTable = true);
+            }
+            //if (ContainsColorOfCardOnHand(cardColorOfMaxCard))
+            //{
+            //    AllowMaxCards(cardColorOfMaxCard, false);
+            //    AllowJoker();
+            //}
+            //else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
+            //{
+            //    AllowMaxCards(trumpCard.ColorOfCard, true);
+            //    AllowJoker();
+            //}
+            //else
+            //{
+            //    foreach (Card item in _cardsOnHand)
+            //    {
+            //        item.AllowsCardOnTheTable = true;
+            //    }
+            //}
         }
 
 
