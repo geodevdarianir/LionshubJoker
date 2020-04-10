@@ -47,14 +47,24 @@ namespace LionshubJoker.Joker
             if (_cardsOnRound != CardsOnRound.Nine)
             {
                 _trumpCard = _deckOfCards[0];
-                foreach (Card card in _deckOfCards)
+                AllCardIsTrump(_trumpCard.ColorOfCard);
+            }
+        }
+
+        private void AllCardIsTrump(CardColor color)
+        {
+            foreach (Gamer item in _gamers)
+            {
+                foreach (Card card in item.CardsOnHand)
                 {
-                    if (card.ColorOfCard == _trumpCard.ColorOfCard) {
-                        _trumpCard.IsTrump = true;
+                    if (card.ColorOfCard == color)
+                    {
+                        card.IsTrump = true;
                     }
                 }
             }
         }
+
         private void HandOutCardsToEachPlayer()
         {
             foreach (Gamer item in _gamers)
@@ -64,7 +74,7 @@ namespace LionshubJoker.Joker
                     item.CardsOnHand.Add(_deckOfCards[0]);
                     _deckOfCards.RemoveAt(0);
                 }
-                item.CardsOnHand.OrderByDescending(p => p.Strength).OrderByDescending(p => p.ColorOfCard ).ToList();
+                item.CardsOnHand = item.CardsOnHand.OrderByDescending(p => p.Strength).ThenBy(p => p.ColorOfCard).ToList();
             }
         }
         private void EmptyHands()

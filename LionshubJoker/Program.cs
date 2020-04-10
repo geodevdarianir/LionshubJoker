@@ -116,12 +116,13 @@ namespace LionshubJoker
 
             // პირველი ხელი /// 1 კარტის დარიგება თითო მოთამაშეზე
             PlayGame play = new PlayGame(gamers, deckOfCard);
-            Game game = new Game(GameType.Standard);
+            Game game = new Game(GameType.Nines);
             var rounds = game.LoadGame();
             foreach (CardsOnRound round in rounds)
             {
                 Console.WriteLine("Round :{0} " + round);
-                play.StartRound(round);
+                play.StartRound(CardsOnRound.Eight);
+                //var s= play.CurrentGamer.CardsOnHand;
                 Console.WriteLine("");
                 Console.WriteLine("TrumpCard ******* {0} ******", play.TrumpCard.ToString());
                 Console.WriteLine("");

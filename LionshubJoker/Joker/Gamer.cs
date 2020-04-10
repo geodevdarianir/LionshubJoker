@@ -10,7 +10,7 @@ namespace LionshubJoker.Joker
         private readonly Table _table;
         public readonly int _id;
         public readonly string _name;
-        public readonly List<Card> _cardsOnHand = new List<Card>();
+        public List<Card> _cardsOnHand = new List<Card>();
 
         public string Name { get { return _name; } }
         public int Id { get { return _id; } }
@@ -22,15 +22,19 @@ namespace LionshubJoker.Joker
                 return _cardsOnHand;
                 /*_cardsOnHand.OrderByDescending(p => p.ColorOfCard).OrderByDescending(p => p.Strength).ToList();*/
             }
+            set
+            {
+                _cardsOnHand = value;
+            }
         }
         public bool CurrentGamerAfterOneRound { get; set; }
-        public List<Table.FourCardsAndGamersOnTable> TakenFourCardAndGamerFromTable { get; set; }
+        public List<TakenCards> TakenCardAndGamerFromTable { get; set; }
         public Gamer(int id, string name, Table table)
         {
             _id = id;
             _name = name;
             _table = table;
-            TakenFourCardAndGamerFromTable = new List<Table.FourCardsAndGamersOnTable>();
+            TakenCardAndGamerFromTable = new List<TakenCards>();
         }
 
         public bool PutCardAway(Card card)
@@ -153,6 +157,10 @@ namespace LionshubJoker.Joker
                 if (card.ColorOfCard == colorOfCard)
                 {
                     card.AllowsCardOnTheTable = true;
+                }
+                else
+                {
+                    card.AllowsCardOnTheTable = false;
                 }
             }
         }
