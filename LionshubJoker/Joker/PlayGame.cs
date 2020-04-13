@@ -12,7 +12,7 @@ namespace LionshubJoker.Joker
         private readonly IList<Card> _deckOfCards;
         private CardsOnRound _cardsOnRound;
         private Card _trumpCard;
-        public string Status { get { return $"Waiting for player {CurrentGamer._name}"; } }
+        public string Status { get { return CurrentGamer == null ? "Please start a round" : $"Waiting for player {CurrentGamer._name}"; } }
         public Gamer CurrentGamer { get; set; }
         public IList<Gamer> Gamers { get { return _gamers; } }
         public Card TrumpCard
@@ -39,7 +39,6 @@ namespace LionshubJoker.Joker
             EmptyHands();
             HandOutCardsToEachPlayer();
             GetTrumpCardOfRound();
-            CurrentGamer = _gamers[0];
         }
 
         private void GetTrumpCardOfRound()

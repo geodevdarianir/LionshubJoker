@@ -11,7 +11,6 @@ namespace LionshubJoker.Joker
         public readonly int _id;
         public readonly string _name;
         public List<Card> _cardsOnHand = new List<Card>();
-
         public string Name { get { return _name; } }
         public int Id { get { return _id; } }
         public List<Card> CardsOnHand

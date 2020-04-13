@@ -7,14 +7,17 @@ namespace LionshubJoker.Joker
     public class Game
     {
         private readonly GameType _gameType;
+        private readonly List<Gamer> _gamers;
         public GameType GameType { get { return _gameType; } }
-        public Game(GameType gameType)
+        public List<Gamer> Gamers { get; set; }
+        public Game(GameType gameType, List<Gamer> gamers)
         {
             _gameType = gameType;
+            _gamers = gamers;
         }
-        public List<CardsOnRound> LoadGame()
+        public List<RoundsAndGamers> LoadGame()
         {
-            List<CardsOnRound> rounds = new List<CardsOnRound>();
+            List<RoundsAndGamers> rounds = new List<RoundsAndGamers>();
             switch (_gameType)
             {
                 case GameType.Standard:
@@ -31,15 +34,41 @@ namespace LionshubJoker.Joker
             }
             return rounds;
         }
-        private List<CardsOnRound> LoadStandardGame()
+        private List<RoundsAndGamers> LoadStandardGame()
         {
-            List<CardsOnRound> rounds = new List<CardsOnRound>();
+            List<RoundsAndGamers> rounds = new List<RoundsAndGamers>();
             var cardsOnRound = Enum.GetValues(typeof(CardsOnRound));
             foreach (CardsOnRound round in cardsOnRound)
             {
                 if (round != CardsOnRound.Nine)
                 {
-                    rounds.Add(round);
+                    switch (round)
+                    {
+                        case CardsOnRound.One:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.One, CurrentGamer = _gamers[0] });
+                            break;
+                        case CardsOnRound.Two:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Two, CurrentGamer = _gamers[1] });
+                            break;
+                        case CardsOnRound.Three:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Three, CurrentGamer = _gamers[2] });
+                            break;
+                        case CardsOnRound.Four:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Four, CurrentGamer = _gamers[3] });
+                            break;
+                        case CardsOnRound.Five:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Five, CurrentGamer = _gamers[0] });
+                            break;
+                        case CardsOnRound.Six:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Six, CurrentGamer = _gamers[1] });
+                            break;
+                        case CardsOnRound.Seven:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Seven, CurrentGamer = _gamers[2] });
+                            break;
+                        case CardsOnRound.Eight:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Eight, CurrentGamer = _gamers[3] });
+                            break;
+                    }
                 }
             }
             AddNinesToRound(ref rounds);
@@ -49,43 +78,71 @@ namespace LionshubJoker.Joker
             {
                 if (round != CardsOnRound.Nine)
                 {
-                    rounds.Add(round);
+                    switch (round)
+                    {
+                        case CardsOnRound.One:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.One, CurrentGamer = _gamers[3] });
+                            break;
+                        case CardsOnRound.Two:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Two, CurrentGamer = _gamers[2] });
+                            break;
+                        case CardsOnRound.Three:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Three, CurrentGamer = _gamers[1] });
+                            break;
+                        case CardsOnRound.Four:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Four, CurrentGamer = _gamers[0] });
+                            break;
+                        case CardsOnRound.Five:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Five, CurrentGamer = _gamers[3] });
+                            break;
+                        case CardsOnRound.Six:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Six, CurrentGamer = _gamers[2] });
+                            break;
+                        case CardsOnRound.Seven:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Seven, CurrentGamer = _gamers[1] });
+                            break;
+                        case CardsOnRound.Eight:
+                            rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Eight, CurrentGamer = _gamers[0] });
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             AddNinesToRound(ref rounds);
 
             return rounds;
         }
-        private List<CardsOnRound> LoadNinesGame()
+        private List<RoundsAndGamers> LoadNinesGame()
         {
-            List<CardsOnRound> rounds = new List<CardsOnRound>();
-            for (int i = 0; i < 4; i++)
+            List<RoundsAndGamers> rounds = new List<RoundsAndGamers>();
+            for (int i = 0; i < _gamers.Count; i++)
             {
                 AddNinesToRound(ref rounds);
             }
             return rounds;
         }
-        private List<CardsOnRound> LoadOnesGame()
+        private List<RoundsAndGamers> LoadOnesGame()
         {
-            List<CardsOnRound> rounds = new List<CardsOnRound>();
+            List<RoundsAndGamers> rounds = new List<RoundsAndGamers>();
             for (int i = 0; i < 4; i++)
             {
                 AddOnesToRound(ref rounds);
             }
             return rounds;
         }
-        private void AddNinesToRound(ref List<CardsOnRound> rounds)
+        private void AddNinesToRound(ref List<RoundsAndGamers> rounds)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < _gamers.Count; i++)
             {
-                rounds.Add(CardsOnRound.Nine);
+                rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.Nine, CurrentGamer = _gamers[i] });
             }
         }
-        private void AddOnesToRound(ref List<CardsOnRound> rounds)
+        private void AddOnesToRound(ref List<RoundsAndGamers> rounds)
         {
             for (int i = 0; i < 4; i++)
             {
-                rounds.Add(CardsOnRound.One);
+                rounds.Add(new RoundsAndGamers { Hand = CardsOnRound.One, CurrentGamer = _gamers[i] });
             }
         }
     }

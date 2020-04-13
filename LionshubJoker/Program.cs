@@ -115,9 +115,9 @@ namespace LionshubJoker
 
             // პირველი ხელი /// 1 კარტის დარიგება თითო მოთამაშეზე
             PlayGame play = new PlayGame(gamers, deckOfCard);
-            Game game = new Game(GameType.Standard);
+            Game game = new Game(GameType.Standard, gamers);
             var rounds = game.LoadGame();
-            foreach (CardsOnRound round in rounds)
+            foreach (RoundsAndGamers round in rounds)
             {
                 //Console.WriteLine("Round :{0} " + round);
                 Console.WriteLine("");
@@ -126,7 +126,9 @@ namespace LionshubJoker
                 Console.WriteLine("");
                 Console.WriteLine("");
 
-                play.StartRound(round);
+                play.StartRound(round.Hand);
+                play.CurrentGamer = round.CurrentGamer;
+
                 if (play.TrumpCard == null)
                 {
                     return;
@@ -223,7 +225,7 @@ namespace LionshubJoker
                 Console.WriteLine("*****************************************************");
                 foreach (Gamer item in gamers)
                 {
-                    Console.WriteLine("{0} => {1}", item.Name, item.TakenCardAndGamerFromTable.Count/4);
+                    Console.WriteLine("{0} => {1}", item.Name, item.TakenCardAndGamerFromTable.Count / 4);
                 }
                 Console.WriteLine("******************************************************");
                 Console.WriteLine("Next Round");
