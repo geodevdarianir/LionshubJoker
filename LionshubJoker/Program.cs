@@ -104,17 +104,10 @@ namespace LionshubJoker
                 new Gamer(3,"Giorgi Romanadze",table),
                 new Gamer(4,"Anuki Devdariani",table)
             };
-            // კარტის დასტის შექმნა
-            DeckOfCardCreator deckOfCardCreator = new DeckOfCardCreator();
-            // კარტის დასტა
-            List<Card> deckOfCard = new List<Card>();
-            deckOfCard.AddRange(deckOfCardCreator.CreateDeckOfCards());
-
-            // კარტის დასტის აჩეხვა
-            var mixDckOfCard = new MixDeckOfCard(deckOfCard);
+           
 
             // პირველი ხელი /// 1 კარტის დარიგება თითო მოთამაშეზე
-            PlayGame play = new PlayGame(gamers, deckOfCard);
+            PlayGame play = new PlayGame(gamers);
             Game game = new Game(GameType.Standard, gamers);
             var rounds = game.LoadGame();
             foreach (RoundsAndGamers round in rounds)

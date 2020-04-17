@@ -9,7 +9,7 @@ namespace LionshubJoker.Joker
         private readonly GameType _gameType;
         private readonly List<Gamer> _gamers;
         public GameType GameType { get { return _gameType; } }
-        public List<Gamer> Gamers { get; set; }
+        public List<Gamer> Gamers { get;private set; }
         public Game(GameType gameType, List<Gamer> gamers)
         {
             _gameType = gameType;

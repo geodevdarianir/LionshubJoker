@@ -9,7 +9,7 @@ namespace LionshubJoker.Joker
     {
 
         private readonly IList<Gamer> _gamers;
-        private readonly IList<Card> _deckOfCards;
+        private IList<Card> _deckOfCards;
         private CardsOnRound _cardsOnRound;
         private Card _trumpCard;
         public string Status { get { return CurrentGamer == null ? "Please start a round" : $"Waiting for player {CurrentGamer._name}"; } }
@@ -26,19 +26,33 @@ namespace LionshubJoker.Joker
                     GetTrumpCardOfRound();
             }
         }
-        public PlayGame(IList<Gamer> gamer, IList<Card> deckOfCards)
+        public PlayGame(IList<Gamer> gamer)
         {
             //_table = table;
             _gamers = gamer;
-            _deckOfCards = deckOfCards;
+
 
         }
         public void StartRound(CardsOnRound cardsOnHand)
         {
             _cardsOnRound = cardsOnHand;
+            CreaDeckOfCard();
             EmptyHands();
             HandOutCardsToEachPlayer();
             GetTrumpCardOfRound();
+        }
+
+        private void CreaDeckOfCard()
+        {
+            // კარტის დასტის შექმნა
+            DeckOfCardCreator deckOfCardCreator = new DeckOfCardCreator();
+            // კარტის დასტა
+            List<Card> deckOfCard = new List<Card>();
+            deckOfCard.AddRange(deckOfCardCreator.CreateDeckOfCards());
+
+            // კარტის დასტის აჩეხვა
+            var mixDckOfCard = new MixDeckOfCard(deckOfCard);
+            _deckOfCards = deckOfCard;
         }
 
         private void GetTrumpCardOfRound()
