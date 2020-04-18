@@ -27,12 +27,159 @@ namespace LionshubJoker.Joker
                         index++;
                         Card card = new Card(color, value, index);
                         SetStrengthOfCard(card);
+                        GeneratePathOfCards(card);
                         deckOfCards.Add(card);
                     }
                 }
             }
-
             return deckOfCards;
+        }
+        private void GeneratePathOfCards(Card card)
+        {
+            switch (card.ColorOfCard)
+            {
+                case CardColor.Spades:
+                    switch (card.ValueOfCard)
+                    {
+                        case CardValue.Ace:
+                            card.CardPath = "/img/AS.png";
+                            break;
+                        case CardValue.Six:
+                            card.CardPath = "/img/54.png";
+                            break;
+                        case CardValue.Seven:
+                            card.CardPath = "/img/7S.png";
+                            break;
+                        case CardValue.Eight:
+                            card.CardPath = "/img/8S.png";
+                            break;
+                        case CardValue.Nine:
+                            card.CardPath = "/img/9S.png";
+                            break;
+                        case CardValue.Ten:
+                            card.CardPath = "/img/10S.png";
+                            break;
+                        case CardValue.Jack:
+                            card.CardPath = "/img/JS.png";
+                            break;
+                        case CardValue.Queen:
+                            card.CardPath = "/img/QS.png";
+                            break;
+                        case CardValue.King:
+                            card.CardPath = "/img/KS.png";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case CardColor.Hearts:
+
+                    switch (card.ValueOfCard)
+                    {
+                        case CardValue.Ace:
+                            card.CardPath = "/img/AH.png";
+                            break;
+                        case CardValue.Six:
+                            card.CardPath = "/img/6H.png";
+                            break;
+                        case CardValue.Seven:
+                            card.CardPath = "/img/7H.png";
+                            break;
+                        case CardValue.Eight:
+                            card.CardPath = "/img/8H.png";
+                            break;
+                        case CardValue.Nine:
+                            card.CardPath = "/img/9H.png";
+                            break;
+                        case CardValue.Ten:
+                            card.CardPath = "/img/10H.png";
+                            break;
+                        case CardValue.Jack:
+                            card.CardPath = "/img/JH.png";
+                            break;
+                        case CardValue.Queen:
+                            card.CardPath = "/img/QH.png";
+                            break;
+                        case CardValue.King:
+                            card.CardPath = "/img/KH.png";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case CardColor.Diamonds:
+
+                    switch (card.ValueOfCard)
+                    {
+                        case CardValue.Ace:
+                            card.CardPath = "/img/ADD.png";
+                            break;
+                        case CardValue.Six:
+                            card.CardPath = "/img/6D.png";
+                            break;
+                        case CardValue.Seven:
+                            card.CardPath = "/img/7D.png";
+                            break;
+                        case CardValue.Eight:
+                            card.CardPath = "/img/8D.png";
+                            break;
+                        case CardValue.Nine:
+                            card.CardPath = "/img/9D.png";
+                            break;
+                        case CardValue.Ten:
+                            card.CardPath = "/img/10D.png";
+                            break;
+                        case CardValue.Jack:
+                            card.CardPath = "/img/JD.png";
+                            break;
+                        case CardValue.Queen:
+                            card.CardPath = "/img/QD.png";
+                            break;
+                        case CardValue.King:
+                            card.CardPath = "/img/KD.png";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case CardColor.Clubs:
+
+                    switch (card.ValueOfCard)
+                    {
+                        case CardValue.Ace:
+                            card.CardPath = "/img/AC.png";
+                            break;
+                        case CardValue.Six:
+                            card.CardPath = "/img/53.png";
+                            break;
+                        case CardValue.Seven:
+                            card.CardPath = "/img/7C.png";
+                            break;
+                        case CardValue.Eight:
+                            card.CardPath = "/img/8C.png";
+                            break;
+                        case CardValue.Nine:
+                            card.CardPath = "/img/9C.png";
+                            break;
+                        case CardValue.Ten:
+                            card.CardPath = "/img/10C.png";
+                            break;
+                        case CardValue.Jack:
+                            card.CardPath = "/img/JC.png";
+                            break;
+                        case CardValue.Queen:
+                            card.CardPath = "/img/QC.png";
+                            break;
+                        case CardValue.King:
+                            card.CardPath = "/img/KC.png";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         private void SetStrengthOfCard(Card card)
         {
