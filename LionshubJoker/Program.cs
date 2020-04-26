@@ -208,7 +208,7 @@ namespace LionshubJoker
                         }
                     }
                     play.CurrentGamer = gamers.Where(p => p.CurrentGamerAfterOneRound == true).FirstOrDefault();
-                    table.TakeCardsFromTable();
+                    table.TakeCardsFromTable(round.Hand);
                     play.CurrentGamer = gamers.Where(p => p.CurrentGamerAfterOneRound == true).First();
                 }
 

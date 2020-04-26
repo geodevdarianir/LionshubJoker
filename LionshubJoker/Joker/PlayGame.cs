@@ -7,7 +7,6 @@ namespace LionshubJoker.Joker
 {
     public class PlayGame
     {
-
         private readonly IList<Gamer> _gamers;
         private IList<Card> _deckOfCards;
         private CardsOnRound _cardsOnRound;
@@ -60,7 +59,18 @@ namespace LionshubJoker.Joker
             if (_cardsOnRound != CardsOnRound.Nine)
             {
                 _trumpCard = _deckOfCards[0];
-                AllCardIsTrump(_trumpCard.ColorOfCard);
+                if (_trumpCard.CardIsJoker() == false)
+                {
+                    AllCardIsTrump(_trumpCard.ColorOfCard);
+                }
+            }
+        }
+
+        public void AllowScore(RoundsAndGamers round)
+        {
+            if (round.CurrentGamer.Id == CurrentGamer.Id)
+            {
+
             }
         }
 

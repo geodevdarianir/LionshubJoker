@@ -26,8 +26,11 @@ namespace LionshubJoker.Joker
                 _cardsOnHand = value;
             }
         }
+
+        public List<Score> AllowedScores { get; set; }
         public bool CurrentGamerAfterOneRound { get; set; }
         public List<TakenCards> TakenCardAndGamerFromTable { get; set; }
+
         public Gamer(int id, string name, Table table)
         {
             _id = id;
@@ -47,6 +50,8 @@ namespace LionshubJoker.Joker
             }
             return result;
         }
+
+
 
         /// <summary>
         /// ამოწმებს მოთამაშეს აქვს თუ არა ე.წ. ცვეტი ხელში
@@ -98,7 +103,7 @@ namespace LionshubJoker.Joker
                 }
                 else
                 {
-                    if (_cardsOnHand.Where(p => p.IsTrump == true).ToList().Count != 0)
+                    if (_cardsOnHand.Where(p => p.IsTrump == true ).ToList().Count != 0)
                     {
                         _cardsOnHand.Where(p => p.IsTrump == true).ToList().ForEach(s => s.AllowsCardOnTheTable = true);
                     }

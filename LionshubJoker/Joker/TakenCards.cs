@@ -8,5 +8,6 @@ namespace LionshubJoker.Joker
     {
         public Card Card { get; set; }
         public int GamerId { get; set; }
+        public CardsOnRound Hand { get; set; }
     }
 }
