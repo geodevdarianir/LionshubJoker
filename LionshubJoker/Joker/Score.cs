@@ -6,6 +6,7 @@ namespace LionshubJoker.Joker
 {
     public enum Score
     {
+        None = -1,
         Pass = 0,
         One = 1,
         Two = 2,

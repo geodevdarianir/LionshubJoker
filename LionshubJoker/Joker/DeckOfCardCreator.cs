@@ -24,11 +24,14 @@ namespace LionshubJoker.Joker
                 {
                     foreach (CardValue value in allValueOfCard)
                     {
-                        index++;
-                        Card card = new Card(color, value, index);
-                        SetStrengthOfCard(card);
-                        GeneratePathOfCards(card);
-                        deckOfCards.Add(card);
+                        if (value != CardValue.None)
+                        {
+                            index++;
+                            Card card = new Card(color, value, index);
+                            SetStrengthOfCard(card);
+                            GeneratePathOfCards(card);
+                            deckOfCards.Add(card);
+                        }
                     }
                 }
             }

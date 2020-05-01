@@ -22,7 +22,7 @@ namespace LionshubJoker.Joker
             }
         }
         //public readonly FourCardsAndGamersOnTable _fourCardsAndGamersListOnTheTable = new FourCardsAndGamersOnTable();
-        public FourCardsAndGamersOnTable _fourCardsAndGamersListOnTheTable { get; private set; }=new FourCardsAndGamersOnTable();
+        public FourCardsAndGamersOnTable _fourCardsAndGamersListOnTheTable { get; private set; } = new FourCardsAndGamersOnTable();
         public Table()
         {
             _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable = new List<CardAndGamerOnTable>();
@@ -44,9 +44,10 @@ namespace LionshubJoker.Joker
                 //variable cardsAndGamerOnTable არის იმდენი კარტი(მისი მფლობელი მოთამაში თურთ) რამდენსაც გვაძლევს ეს ფილტრი. ანუ პირველი კარტის ცვეტის ნაირი კარტები.
                 List<CardAndGamerOnTable> cardsAndGamersOnTableOfSameColor = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.ColorOfCard == firstCardAndGamer.Card.ColorOfCard).ToList();
                 // cardsAndGamersOnTable.Count == 0 ? _fourCardsAndGamersListOnTheTable._cardsOnTheTable[0].Card.Strength :
-                StrengthOfCard strengthOfCardsAndGamersOnTable = cardsAndGamersOnTableOfSameColor.Where(p => p.Card.CardIsJoker() == false).Max(p => p.Card.Strength);
+               
                 if (firstCardAndGamer.Card.CardIsJoker() == false)
                 {
+                    StrengthOfCard strengthOfCardsAndGamersOnTable = cardsAndGamersOnTableOfSameColor.Where(p => p.Card.CardIsJoker() == false).Max(p => p.Card.Strength);
                     //პირველი კარტი არ არის ჯოკერი
                     if (cardsAndGamersOnTableOfSameColor.Count == _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count && _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.CardIsJoker()).ToList().Count == 0)
                     {
@@ -75,7 +76,7 @@ namespace LionshubJoker.Joker
                         {
                             //მიყავს კოზირს
                             StrengthOfCard maxTrampCard = trumpCardsOnTheTable.Max(p => p.Card.Strength);
-                            CardAndGamerOnTable winner = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.First(p => p.Card.Strength == maxTrampCard);
+                            CardAndGamerOnTable winner = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.First(p => p.Card.Strength == maxTrampCard && p.Card.IsTrump);
                             //card.Gamer.TakenFourCardAndGamerFromTable.Add(_fourCardsAndGamersListOnTheTable);
                             TakeCardGamer(winner.Gamer, currentHand);
                             _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.ForEach(p => p.Gamer.CurrentGamerAfterOneRound = false);
@@ -337,6 +338,7 @@ namespace LionshubJoker.Joker
                     Hand = hand
                 });
             }
+            gamer.Result.IsScore = (Score)Enum.ToObject(typeof(Score), gamer.TakenCardAndGamerFromTable.Where(p => p.GamerId == gamer.Id && p.Hand == hand).Count());
         }
     }
 }

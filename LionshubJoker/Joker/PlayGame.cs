@@ -29,8 +29,6 @@ namespace LionshubJoker.Joker
         {
             //_table = table;
             _gamers = gamer;
-
-
         }
         public void StartRound(CardsOnRound cardsOnHand)
         {
@@ -39,8 +37,20 @@ namespace LionshubJoker.Joker
             EmptyHands();
             HandOutCardsToEachPlayer();
             GetTrumpCardOfRound();
+            SetRoundScores(cardsOnHand);
         }
 
+        //private void AllowScores()
+        //{
+        //    foreach (Gamer item in _gamers)
+        //    {
+        //        int maxScore =
+        //        if (item == CurrentGamer)
+        //        {
+
+        //        }
+        //    }
+        //}
         private void CreaDeckOfCard()
         {
             // კარტის დასტის შექმნა
@@ -66,11 +76,44 @@ namespace LionshubJoker.Joker
             }
         }
 
-        public void AllowScore(RoundsAndGamers round)
+        public void SetTrumpCardOfRound(CardColor color)
         {
-            if (round.CurrentGamer.Id == CurrentGamer.Id)
+            if (_cardsOnRound == CardsOnRound.Nine)
             {
+                _trumpCard = new Card(color, CardValue.None, 0);
+                AllCardIsTrump(color);
+            }
+        }
 
+        private void SetRoundScores(CardsOnRound round)
+        {
+            var allRounds = Enum.GetValues(typeof(CardsOnRound)).Cast<CardsOnRound>();
+            var rounds = allRounds.Take(allRounds.ToList().IndexOf(round) + 1);
+            foreach (Gamer item in _gamers)
+            {
+                item.AllowedScores.Clear();
+                //item.AllowedScores.ForEach(p => p.Allowed = false);
+                if (item.AllowedScores.Where(p => p.Score == Score.Pass).Count() == 0)
+                {
+                    item.AllowedScores.Add(new AllowedScores
+                    {
+                        Score = Score.Pass,
+                        Allowed = false,
+                    });
+                }
+
+                foreach (CardsOnRound roundItem in rounds)
+                {
+                    Score score = (Score)Enum.ToObject(typeof(Score), Convert.ToInt16(roundItem));
+                    if (item.AllowedScores.Where(p => p.Score == score).Count() == 0)
+                    {
+                        item.AllowedScores.Add(new AllowedScores
+                        {
+                            Score = score,
+                            Allowed = false,
+                        });
+                    }
+                }
             }
         }
 
@@ -100,6 +143,7 @@ namespace LionshubJoker.Joker
                 item.CardsOnHand = item.CardsOnHand.OrderByDescending(p => p.Strength).ThenBy(p => p.ColorOfCard).ToList();
             }
         }
+
         private void EmptyHands()
         {
             foreach (Gamer item in _gamers)

@@ -16,5 +16,6 @@ namespace LionshubJoker.Joker
         Queen = 12,
         King = 13,
         Ace = 14,
+        None = 0
     }
 }

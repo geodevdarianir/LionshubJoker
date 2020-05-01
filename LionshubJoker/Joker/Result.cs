@@ -8,6 +8,7 @@ namespace LionshubJoker.Joker
     public class Result
     {
         private int _endResult = 0;
+        public int GamerId { get; set; }
         public Score ShouldScore { get; set; } = 0;
         public Score IsScore { get; set; } = 0;
         public Score MaxScore { get; set; } = 0;
@@ -29,17 +30,25 @@ namespace LionshubJoker.Joker
                     }
                     else
                     {
-                        _endResult = Enum.GetValues(typeof(Score)).Cast<Score>().ToList().IndexOf(ShouldScore)  * 50;
+                        _endResult = (Enum.GetValues(typeof(Score)).Cast<Score>().ToList().IndexOf(ShouldScore) + 1)*50;
                     }
                 }
                 else
                 {
-                    _endResult = Enum.GetValues(typeof(Score)).Cast<Score>().ToList().IndexOf(ShouldScore)  * 10;
+                    _endResult = Enum.GetValues(typeof(Score)).Cast<Score>().ToList().IndexOf(IsScore) * 10;
                 }
             }
             else
             {
-                _endResult = Enum.GetValues(typeof(Score)).Cast<Score>().ToList().IndexOf(ShouldScore)  * 10;
+                if (IsScore == Score.Pass)
+                {
+                    _endResult = 50;
+                }
+                else
+                {
+                    _endResult = Enum.GetValues(typeof(Score)).Cast<Score>().ToList().IndexOf(IsScore) * 10;
+                }
+
             }
             return _endResult;
         }

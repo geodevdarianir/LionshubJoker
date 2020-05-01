@@ -26,8 +26,9 @@ namespace LionshubJoker.Joker
                 _cardsOnHand = value;
             }
         }
-
-        public List<Score> AllowedScores { get; set; }
+        public Result Result { get; set; }
+        public List<AllowedScores> AllowedScores { get; set; }
+        public Score ScoreToFill { get; set; }
         public bool CurrentGamerAfterOneRound { get; set; }
         public List<TakenCards> TakenCardAndGamerFromTable { get; set; }
 
@@ -37,6 +38,22 @@ namespace LionshubJoker.Joker
             _name = name;
             _table = table;
             TakenCardAndGamerFromTable = new List<TakenCards>();
+            AllowedScores = new List<AllowedScores>();
+            //AllowedScores.Add(new Joker.AllowedScores()
+            //{
+            //    Allowed = false,
+            //    Score = Score.Pass
+            //});
+        }
+
+        public void SetShouldScore(Score ShouldScore, CardsOnRound round)
+        {
+            Result = new Result()
+            {
+                ShouldScore = ShouldScore,
+                MaxScore = (Score)Enum.ToObject(typeof(Score), Convert.ToInt16(round)),
+                IsScore = Score.Pass
+            };
         }
 
         public bool PutCardAway(Card card)
@@ -50,8 +67,6 @@ namespace LionshubJoker.Joker
             }
             return result;
         }
-
-
 
         /// <summary>
         /// ამოწმებს მოთამაშეს აქვს თუ არა ე.წ. ცვეტი ხელში
@@ -103,7 +118,7 @@ namespace LionshubJoker.Joker
                 }
                 else
                 {
-                    if (_cardsOnHand.Where(p => p.IsTrump == true ).ToList().Count != 0)
+                    if (_cardsOnHand.Where(p => p.IsTrump == true).ToList().Count != 0)
                     {
                         _cardsOnHand.Where(p => p.IsTrump == true).ToList().ForEach(s => s.AllowsCardOnTheTable = true);
                     }
@@ -118,32 +133,6 @@ namespace LionshubJoker.Joker
                 }
             }
         }
-
-        /// <summary>
-        /// ააქტიურებს ჯოკრის მიერ მოთხოვნილ მაქსიმალურ კარტს. (ვიში ჯვარი, ყვავი, აგური, გული)
-        /// </summary>
-        /// <param name="cardColorOfMaxCard">მაღალი "ცვეტი"</param>
-        //public void AllowMaxCardsForTable(CardColor cardColorOfMaxCard, Card trumpCard)
-        //{
-        //    if (ContainsColorOfCardOnHand(cardColorOfMaxCard))
-        //    {
-        //        AllowMaxCards(cardColorOfMaxCard);
-        //        AllowJoker();
-        //    }
-        //    else if (ContainsColorOfCardOnHand(trumpCard.ColorOfCard))
-        //    {
-        //        AllowMaxCards(trumpCard.ColorOfCard);
-        //        AllowJoker();
-        //    }
-        //    else
-        //    {
-        //        foreach (Card item in _cardsOnHand)
-        //        {
-        //            item.AllowsCardOnTheTable = true;
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// ააქტიურებს ჯოკერს
         /// </summary>
@@ -221,27 +210,6 @@ namespace LionshubJoker.Joker
 
 
 
-        // private int Sort(int CardValue)
-        //{
-        //  cardValues.Add(CardValue);
-        //if (cardValues.Count > 1)
-        //{
-        //  for (int j = 1; j < cardValues.Count; j++)
-        //{
-        //  int value = cardValues[j];
-        //int i = j - 1;
-        //while (i >= 0 && cardValues[i] > value)
-        //{
-        //  cardValues[i + 1] = cardValues[j];
-        //  i -= 1;
-        //}
-        //cardValues[i + 1] = value;
-        //}
-        //return cardValues[cardValues.Count - 1];
-        //}
-        //return cardValues[0];
-        //}
-
         readonly List<Card> cardValues = new List<Card>();
         private void AllowMaxCards(CardColor colorOfCard, bool trump)
         {
@@ -301,24 +269,5 @@ namespace LionshubJoker.Joker
 
         }
 
-
-        //private void AllowMaxCards(CardColor colorOfCard)
-        //{
-        //    int minValue = 0;
-        //    int cardIdOfMaxCard = -1;
-        //    foreach (Card card in CardsOnHand)
-        //    {
-        //        if (Convert.ToInt16(card.ValueOfCard) > minValue)
-        //        {
-        //            if (cardIdOfMaxCard != -1)
-        //            {
-        //                CardsOnHand.ElementAt(cardIdOfMaxCard).AllowsCardOnTheTable = false;
-        //            }
-        //            minValue = Convert.ToInt16(card.ValueOfCard);
-        //            card.AllowsCardOnTheTable = true;
-        //            cardIdOfMaxCard = card.CardId;
-        //        }
-        //    }
-        //}
     }
 }
