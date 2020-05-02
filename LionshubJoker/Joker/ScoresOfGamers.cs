@@ -9,8 +9,8 @@ namespace LionshubJoker.Joker
     {
         public List<Result> ScoresOfGamersForRound { get; set; }
         private readonly CardsOnRound _round;
-        private readonly List<Gamer> _gamers;
-        public ScoresOfGamers(CardsOnRound round, List<Gamer> gamers)
+        private readonly IList<Gamer> _gamers;
+        public ScoresOfGamers(CardsOnRound round, IList<Gamer> gamers)
         {
             _round = round;
             _gamers = gamers;

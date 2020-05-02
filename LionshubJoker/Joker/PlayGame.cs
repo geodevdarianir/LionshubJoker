@@ -51,6 +51,7 @@ namespace LionshubJoker.Joker
         //        }
         //    }
         //}
+
         private void CreaDeckOfCard()
         {
             // კარტის დასტის შექმნა
@@ -121,13 +122,15 @@ namespace LionshubJoker.Joker
         {
             foreach (Gamer item in _gamers)
             {
-                foreach (Card card in item.CardsOnHand)
-                {
-                    if (card.ColorOfCard == color)
-                    {
-                        card.IsTrump = true;
-                    }
-                }
+                item.CardsOnHand.ForEach(p => p.IsTrump = false);
+                item.CardsOnHand.Where(p => p.ColorOfCard == color).ToList().ForEach(p => p.IsTrump = true);
+                //foreach (Card card in item.CardsOnHand)
+                //{
+                //    if (card.ColorOfCard == color)
+                //    {
+                //        card.IsTrump = true;
+                //    }
+                //}
             }
         }
 
