@@ -13,7 +13,8 @@ namespace LionshubJoker.Joker
         public Score IsScore { get; set; } = 0;
         public Score MaxScore { get; set; } = 0;
         public int EndResult { get => GetResult(); private set => _endResult = value; }
-
+        public CardsOnRound Hand { get; set; }
+        public bool Finished { get; set; } = false;
         private int GetResult()
         {
             if (ShouldScore != Score.Pass)

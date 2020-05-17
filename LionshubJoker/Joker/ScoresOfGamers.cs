@@ -27,13 +27,13 @@ namespace LionshubJoker.Joker
                 MaxScore = (Score)Enum.ToObject(typeof(Score), Convert.ToInt16(_round))
             });
             Gamer gamer = _gamers.FirstOrDefault(p => p.Id == gamerId);
-            gamer.Result = new Result
+            gamer.Result.Add(new Result
             {
                 GamerId = gamerId,
                 ShouldScore = score,
                 IsScore = Score.Pass,
                 MaxScore = (Score)Enum.ToObject(typeof(Score), Convert.ToInt16(_round))
-            };
+            });
         }
 
         public void AllowScoresForGamers(int gamerID)

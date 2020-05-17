@@ -44,7 +44,7 @@ namespace LionshubJoker.Joker
                 //variable cardsAndGamerOnTable არის იმდენი კარტი(მისი მფლობელი მოთამაში თურთ) რამდენსაც გვაძლევს ეს ფილტრი. ანუ პირველი კარტის ცვეტის ნაირი კარტები.
                 List<CardAndGamerOnTable> cardsAndGamersOnTableOfSameColor = _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Where(p => p.Card.ColorOfCard == firstCardAndGamer.Card.ColorOfCard).ToList();
                 // cardsAndGamersOnTable.Count == 0 ? _fourCardsAndGamersListOnTheTable._cardsOnTheTable[0].Card.Strength :
-               
+
                 if (firstCardAndGamer.Card.CardIsJoker() == false)
                 {
                     StrengthOfCard strengthOfCardsAndGamersOnTable = cardsAndGamersOnTableOfSameColor.Where(p => p.Card.CardIsJoker() == false).Max(p => p.Card.Strength);
@@ -338,7 +338,11 @@ namespace LionshubJoker.Joker
                     Hand = hand
                 });
             }
-            gamer.Result.IsScore = (Score)Enum.ToObject(typeof(Score), gamer.TakenCardAndGamerFromTable.Where(p => p.GamerId == gamer.Id && p.Hand == hand).Count());
+            gamer.Result.First(p => p.Finished == false).IsScore = (Score)Enum.ToObject(typeof(Score), gamer.TakenCardAndGamerFromTable.Where(p => p.GamerId == gamer.Id && p.Hand == hand).Count());
+            if (gamer.CardsOnHand.Count == 0)
+            {
+                gamer.Result.First(p => p.Finished == false).Finished = true;
+            }
         }
     }
 }

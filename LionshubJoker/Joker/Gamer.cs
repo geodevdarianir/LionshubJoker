@@ -26,7 +26,7 @@ namespace LionshubJoker.Joker
                 _cardsOnHand = value;
             }
         }
-        public Result Result { get; set; }
+        public List<Result> Result { get; set; }
         public List<AllowedScores> AllowedScores { get; set; }
         public Score ScoreToFill { get; set; }
         public bool CurrentGamerAfterOneRound { get; set; }
@@ -39,21 +39,19 @@ namespace LionshubJoker.Joker
             _table = table;
             TakenCardAndGamerFromTable = new List<TakenCards>();
             AllowedScores = new List<AllowedScores>();
-            //AllowedScores.Add(new Joker.AllowedScores()
-            //{
-            //    Allowed = false,
-            //    Score = Score.Pass
-            //});
+            Result = new List<Result>();
         }
 
         public void SetShouldScore(Score ShouldScore, CardsOnRound round)
         {
-            Result = new Result()
+            Result.Add(new Result()
             {
                 ShouldScore = ShouldScore,
                 MaxScore = (Score)Enum.ToObject(typeof(Score), Convert.ToInt16(round)),
-                IsScore = Score.Pass
-            };
+                IsScore = Score.Pass,
+                GamerId = this.Id,
+                Hand = round
+            });
         }
 
         public bool PutCardAway(Card card)

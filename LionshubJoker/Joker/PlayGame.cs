@@ -11,6 +11,7 @@ namespace LionshubJoker.Joker
         private IList<Card> _deckOfCards;
         private CardsOnRound _cardsOnRound;
         private Card _trumpCard;
+
         public string Status { get { return CurrentGamer == null ? "Please start a round" : $"Waiting for player {CurrentGamer._name}"; } }
         public Gamer CurrentGamer { get; set; }
         public IList<Gamer> Gamers { get { return _gamers; } }
@@ -39,18 +40,6 @@ namespace LionshubJoker.Joker
             GetTrumpCardOfRound();
             SetRoundScores(cardsOnHand);
         }
-
-        //private void AllowScores()
-        //{
-        //    foreach (Gamer item in _gamers)
-        //    {
-        //        int maxScore =
-        //        if (item == CurrentGamer)
-        //        {
-
-        //        }
-        //    }
-        //}
 
         private void CreaDeckOfCard()
         {
@@ -124,13 +113,6 @@ namespace LionshubJoker.Joker
             {
                 item.CardsOnHand.ForEach(p => p.IsTrump = false);
                 item.CardsOnHand.Where(p => p.ColorOfCard == color).ToList().ForEach(p => p.IsTrump = true);
-                //foreach (Card card in item.CardsOnHand)
-                //{
-                //    if (card.ColorOfCard == color)
-                //    {
-                //        card.IsTrump = true;
-                //    }
-                //}
             }
         }
 

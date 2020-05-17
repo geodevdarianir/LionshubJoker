@@ -168,7 +168,7 @@ namespace LionshubJoker
             Console.WriteLine("*****************************************************");
             foreach (Gamer item in gamers)
             {
-                Console.WriteLine("{0} => {1}", item.Name, item.Result.EndResult);
+                Console.WriteLine("{0} => {1}", item.Name, item.Result);
             }
             Console.WriteLine("******************************************************");
             Console.WriteLine("Next Round");
