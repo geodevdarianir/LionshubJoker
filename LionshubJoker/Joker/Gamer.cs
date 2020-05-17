@@ -32,6 +32,7 @@ namespace LionshubJoker.Joker
         public Score ScoreToFill { get; set; }
         public bool CurrentGamerAfterOneRound { get; set; }
         public List<TakenCards> TakenCardAndGamerFromTable { get; set; }
+
         public bool IsOnPremia { get => GamerOnPremia(); }
         public Gamer(int id, string name, Table table)
         {
@@ -55,15 +56,15 @@ namespace LionshubJoker.Joker
             return true;
         }
 
-        public void SetShouldScore(Score ShouldScore, CardsOnRound round)
+        public void SetShouldScore(Score ShouldScore, RoundsAndGamers roundGamerANDpulka)
         {
             Result.Add(new Result()
             {
                 ShouldScore = ShouldScore,
-                MaxScore = (Score)Enum.ToObject(typeof(Score), Convert.ToInt16(round)),
+                MaxScore = (Score)Enum.ToObject(typeof(Score), Convert.ToInt16(roundGamerANDpulka.Hand)),
                 IsScore = Score.Pass,
                 GamerId = this.Id,
-                Hand = round
+                Hand = roundGamerANDpulka
             });
         }
 
@@ -218,9 +219,6 @@ namespace LionshubJoker.Joker
             //    }
             //}
         }
-
-
-
         readonly List<Card> cardValues = new List<Card>();
         private void AllowMaxCards(CardColor colorOfCard, bool trump)
         {

@@ -14,6 +14,7 @@ namespace LionshubJoker.Joker
         {
             get => GetWaglejvaODERshetenva();
         }
+
         public ScoresOfGamers(CardsOnRound round, IList<Gamer> gamers)
         {
             _round = round;
