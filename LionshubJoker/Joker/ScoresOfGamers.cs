@@ -10,11 +10,27 @@ namespace LionshubJoker.Joker
         public List<Result> ScoresOfGamersForRound { get; set; }
         private readonly CardsOnRound _round;
         private readonly IList<Gamer> _gamers;
+        public int waglejaODERshetenva
+        {
+            get => GetWaglejvaODERshetenva();
+        }
         public ScoresOfGamers(CardsOnRound round, IList<Gamer> gamers)
         {
             _round = round;
             _gamers = gamers;
             ScoresOfGamersForRound = new List<Result>();
+        }
+
+
+        private int GetWaglejvaODERshetenva()
+        {
+            if (ScoresOfGamersForRound.Count == 4)
+            {
+                int sum = ScoresOfGamersForRound.Sum(p => Convert.ToInt32(p.ShouldScore));
+                int maxScoreOfRound = Convert.ToInt32(_round);
+                return maxScoreOfRound - sum;
+            }
+            return 0;
         }
 
         public void TellScore(Score score, int gamerId)

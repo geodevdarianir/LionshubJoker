@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace LionshubJoker.Joker
 {
@@ -31,7 +32,7 @@ namespace LionshubJoker.Joker
         public Score ScoreToFill { get; set; }
         public bool CurrentGamerAfterOneRound { get; set; }
         public List<TakenCards> TakenCardAndGamerFromTable { get; set; }
-
+        public bool IsOnPremia { get => GamerOnPremia(); }
         public Gamer(int id, string name, Table table)
         {
             _id = id;
@@ -40,6 +41,18 @@ namespace LionshubJoker.Joker
             TakenCardAndGamerFromTable = new List<TakenCards>();
             AllowedScores = new List<AllowedScores>();
             Result = new List<Result>();
+        }
+
+        private bool GamerOnPremia()
+        {
+            foreach (Result item in Result)
+            {
+                if (item.IsScore != item.ShouldScore)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void SetShouldScore(Score ShouldScore, CardsOnRound round)
