@@ -339,9 +339,13 @@ namespace LionshubJoker.Joker
                 });
             }
             gamer.Result.First(p => p.Finished == false).IsScore = (Score)Enum.ToObject(typeof(Score), gamer.TakenCardAndGamerFromTable.Where(p => p.GamerId == gamer.Id && p.Hand == hand).Count());
-            if (gamer.CardsOnHand.Count == 0)
+            if (_fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable.Count() == 4)
             {
-                gamer.Result.First(p => p.Finished == false).Finished = true;
+                foreach (CardAndGamerOnTable item in _fourCardsAndGamersListOnTheTable._fourCardAndGamerOnTable)
+                {
+                    if (item.Gamer.CardsOnHand.Count == 0)
+                        item.Gamer.Result.First(p => p.Finished == false).Finished = true;
+                }
             }
         }
     }

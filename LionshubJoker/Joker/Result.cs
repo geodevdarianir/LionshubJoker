@@ -49,7 +49,6 @@ namespace LionshubJoker.Joker
                 {
                     _endResult = Enum.GetValues(typeof(Score)).Cast<Score>().ToList().IndexOf(IsScore) * 10;
                 }
-
             }
             return _endResult;
         }

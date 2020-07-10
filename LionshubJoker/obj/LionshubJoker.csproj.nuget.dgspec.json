@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rdev\\source\\repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj": {}
+    "C:\\Users\\Rdev\\Source\\Repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rdev\\source\\repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj": {
+    "C:\\Users\\Rdev\\Source\\Repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rdev\\source\\repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj",
+        "projectUniqueName": "C:\\Users\\Rdev\\Source\\Repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj",
         "projectName": "LionshubJoker",
-        "projectPath": "C:\\Users\\Rdev\\source\\repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj",
+        "projectPath": "C:\\Users\\Rdev\\Source\\Repos\\LionshubJoker\\LionshubJoker\\LionshubJoker.csproj",
         "packagesPath": "C:\\Users\\Rdev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rdev\\source\\repos\\LionshubJoker\\LionshubJoker\\obj\\",
+        "outputPath": "C:\\Users\\Rdev\\Source\\Repos\\LionshubJoker\\LionshubJoker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -50,12 +50,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
